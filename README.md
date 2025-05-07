@@ -2,11 +2,18 @@
 
 Cosmic Dashboard is a space-themed personal dashboard app designed to explore the cosmos while boosting productivity. Built with a mobile-first approach, it features widgets like a To-Do list, Space News, SpaceX launch dates, all styled with a sleek Cosmic Dark palette. This project challenges me to learn new technologies (Jest, TypeScript) on the fly while leveraging my existing skills, aiming to create a standout portfolio piece for my journey as a developer.
 
+## Table of Contents
+- [Demo](#demo)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Roadmap](#project-roadmap)
+- [About Me](#about-me)
+
 ## 🌌 Demo
 
 Coming soon! For now, check out my project plan and mockups in [Figma](https://www.figma.com/board/21TMmNKdjrhxi0D2awQo8W/personal-dashboard?t=3lGg2O0gkLgF0Ptb-1)
 
-✨ Features
+## ✨ Features
 
 -   Space-Themed Widgets:
 
