@@ -46,5 +46,41 @@ Coming soon! For now, check out my project plan and mockups in [Figma](https://w
     -   GitHub Issues: Task tracking
     -   GitHub Actions/Husky: Pull request/pre-commit checks
     -   Jest/Playwright: TDD approach with Unit Tests and end-to-end tests
+    -   Vercel: Deployment
 
 -   Database: Supabase: For user auth
+
+## 📆 Project Roadmap
+
+- Sprint 1
+  - Project Plan in Figma
+  - Basic UI design
+ 
+- Sprint 2
+  - Next.js/TypeScript setup
+  - Supabase setup
+  - Husky setup
+  - Jest/Playwright setup
+  - Login UI design and implementation
+  - Testing
+
+- Sprint 3
+  - Header
+  - To-Do list
+  - NASA photo background
+ 
+- Sprint 4
+  - SpaceX, Joke, Quote, Who's in Space widgets
+ 
+- Sprint 5
+  - Space News, Weather, Mars Rover, ISS location widgets
+
+- Sprint 6
+  - Final Polish
+  - Deployment to Vercel
+  - Documentation
+ 
+## 👨‍💻 About Me
+
+I’m a budding developer passionate about building innovative, visually appealing apps. This project is my hands-on learning journey, pushing me to master TypeScript and TDD while refining my skills in responsive design, Next.js, API integration and agile development. Connect with me on [LinkedIn](https://www.linkedin.com/in/james-o-kane-orbiccode/) to follow my progress!
+
