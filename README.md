@@ -8,40 +8,43 @@ Coming soon! For now, check out my project plan and mockups in [Figma](https://w
 
 ✨ Features
 
-- Space-Themed Widgets:
-  - To-Do: Manage tasks
-  - Weather: Current conditions
-  - Space News: Headlines filtered for space topics using NewsAPI.
-  - Next SpaceX Launch: Upcoming launch details
-  - Who’s in Space?: Current astronauts on the ISS via Open Notify.
-  - Mars Rover Photo: Daily images from NASA’s Mars rovers.
-  - ISS Location: current ISS location
+-   Space-Themed Widgets:
 
-- Responsive Design:
-  - Mobile: Vertical stack
-  - Tablet: 2 column grid
-  - Desktop: 3 column grid
+    -   To-Do: Manage tasks
+    -   Weather: Current conditions
+    -   Space News: Headlines filtered for space topics using NewsAPI.
+    -   Next SpaceX Launch: Upcoming launch details
+    -   Who’s in Space?: Current astronauts on the ISS via Open Notify.
+    -   Mars Rover Photo: Daily images from NASA’s Mars rovers.
+    -   ISS Location: current ISS location
 
-- Cosmic Dark Theme: Dark blue/purple cards and NASA photo of the day background
+-   Responsive Design:
+
+    -   Mobile: Vertical stack
+    -   Tablet: 2 column grid
+    -   Desktop: 3 column grid
+
+-   Cosmic Dark Theme: Dark blue/purple cards and NASA photo of the day background
 
 ## 🛠️ Tech Stack
 
-- Frontend: Next.js, TypeScript
+-   Frontend: Next.js, TypeScript
 
-- APIs:
-  - NASA (Photo of the Day, Mars Rover Photos)
-  - Open Notify (ISS location, Astronauts)
-  - SpaceX API (Launch Times)
-  - NewsAPI (Space News)
-  - Official Joke (Random Jokes)
-  - Quote Garden (Random Quotes)
+-   APIs:
 
-- Tools:
-  - Figma: UI design and project plan (user stories, MVPs, sprints)
-  - Notion: Daily standups to be Agile
-  - GitHub Issues: Task tracking
-  - GitHub Actions/Husky: Pull request/pre-commit checks
-  - Jest/Playwright: TDD approach with Unit Tests and end-to-end tests
+    -   NASA (Photo of the Day, Mars Rover Photos)
+    -   Open Notify (ISS location, Astronauts)
+    -   SpaceX API (Launch Times)
+    -   NewsAPI (Space News)
+    -   Official Joke (Random Jokes)
+    -   Quote Garden (Random Quotes)
 
-- Database: Supabase: For user auth
+-   Tools:
 
+    -   Figma: UI design and project plan (user stories, MVPs, sprints)
+    -   Notion: Daily standups to be Agile
+    -   GitHub Issues: Task tracking
+    -   GitHub Actions/Husky: Pull request/pre-commit checks
+    -   Jest/Playwright: TDD approach with Unit Tests and end-to-end tests
+
+-   Database: Supabase: For user auth
