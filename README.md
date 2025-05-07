@@ -6,7 +6,7 @@ Cosmic Dashboard is a space-themed personal dashboard app designed to explore th
 
 - [Demo](#-demo)
 - [Features](#-features)
-- [Tech Stack](#-tech-stack)
+- [Tech Stack](#%EF%B8%8F-tech-stack)
 - [Project Roadmap](#-project-roadmap)
 - [About Me](#-about-me)
 
