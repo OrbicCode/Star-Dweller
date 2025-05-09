@@ -1,9 +1,13 @@
 .container {
 	width: 100vw;
 	height: 100vh;
-	background: linear-gradient(135deg, #060112, #012840);
+	background: linear-gradient(135deg, var(--black), var(--dark-blue));
 	text-align: center;
 	place-content: center;
+}
+
+.container h1 {
+	letter-spacing: 1px;
 }
 
 .form {
@@ -12,12 +16,27 @@
 	align-items: center;
 }
 
-.form input {
+.input {
+	color: inherit;
 	display: block;
+	padding: 1em 2.5em;
+	margin: 0.5em 0 1.5em;
+	min-width: 280px;
+	border: none;
+	border-radius: 25px;
+	background-color: var(--blue-grey);
 }
 
-.emailInput {
+.message {
+	font-size: 1.125rem;
+	color: var(--red);
 }
 
-.passwordInput {
+.submitBtn {
+	font-family: inherit;
+	padding: 1em 2.5em;
+	border: none;
+	border-radius: 25px;
+	color: inherit;
+	background-color: var(--blue-grey);
 }

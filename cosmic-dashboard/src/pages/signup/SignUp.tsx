@@ -56,7 +56,7 @@ export default function SignUp() {
 						name='email'
 						value={email}
 						onChange={handleEmailChange}
-						className={styles.emailInput}
+						className={styles.input}
 						disabled={isLoading}
 						required
 					/>
@@ -69,13 +69,14 @@ export default function SignUp() {
 						name='password'
 						value={password}
 						onChange={handlePasswordChange}
-						className={styles.passwordInput}
+						className={styles.input}
 						disabled={isLoading}
 						minLength={8}
 						required
 					/>
 				</div>
-				<p>{message ? message : null}</p>
+				<p className={styles.message}>{message ? message : null}</p>
+				{/* <p className={styles.message}>error</p> */}
 				<button className={styles.submitBtn} disabled={isLoading}>
 					Sign Up
 				</button>

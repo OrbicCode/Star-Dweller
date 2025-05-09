@@ -1,5 +1,12 @@
 :root {
 	--font-exo2: "Exo 2", sans-serif;
+
+	--black: #060112;
+	--dark-blue: #012840;
+	--blue-grey: #3a506b;
+	--green: #107e57;
+	--yellow: #f8bc04;
+	--red: #c9374c;
 }
 
 html,
