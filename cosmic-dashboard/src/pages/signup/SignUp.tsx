@@ -75,10 +75,19 @@ export default function SignUp() {
 						required
 					/>
 				</div>
-				<p className={styles.message}>{message ? message : null}</p>
-				{/* <p className={styles.message}>error</p> */}
+				{message ? (
+					<p
+						className={
+							message.includes("successful")
+								? styles.successMessage
+								: styles.errorMessage
+						}
+					>
+						{message}
+					</p>
+				) : null}
 				<button className={styles.submitBtn} disabled={isLoading}>
-					Sign Up
+					{isLoading ? "Sighning up..." : "Sign Up"}
 				</button>
 			</form>
 		</div>

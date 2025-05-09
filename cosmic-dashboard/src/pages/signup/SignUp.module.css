@@ -27,8 +27,17 @@
 	background-color: var(--blue-grey);
 }
 
-.message {
+.successMessage,
+.errorMessage {
+	margin-top: 0;
 	font-size: 1.125rem;
+}
+
+.successMessage {
+	color: var(--green);
+}
+
+.errorMessage {
 	color: var(--red);
 }
 
