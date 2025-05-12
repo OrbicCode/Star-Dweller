@@ -19,6 +19,7 @@ body {
 body {
 	margin: 0;
 	color: whitesmoke;
+	background: linear-gradient(135deg, var(--black), var(--dark-blue));
 }
 
 * {

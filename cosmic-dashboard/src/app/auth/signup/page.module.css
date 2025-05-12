@@ -31,6 +31,7 @@
 .errorMessage {
 	margin-top: 0;
 	font-size: 1.125rem;
+	min-height: 30px;
 }
 
 .successMessage {
@@ -48,4 +49,10 @@
 	border-radius: 25px;
 	color: inherit;
 	background-color: var(--blue-grey);
+	cursor: pointer;
+	transition: background-color 0.3s ease-in-out;
+}
+
+.submitBtn:hover {
+	background-color: var(--green);
 }

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import supabase from "@/app/utils/supabaseClient";
-import styles from "./SignUp.module.css";
+import styles from "./page.module.css";
 
 export default function SignUp() {
 	const [email, setEmail] = useState<string>("");
@@ -47,7 +47,11 @@ export default function SignUp() {
 	return (
 		<div className={styles.container}>
 			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit} className={styles.form}>
+			<form
+				onSubmit={handleSubmit}
+				className={styles.form}
+				aria-label='Sign Up Form'
+			>
 				<div>
 					<label htmlFor='email'>Email:</label>
 					<input
