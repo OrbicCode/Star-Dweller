@@ -5,5 +5,6 @@ describe("Sign Up Page", () => {
 	it("renders the signup form", () => {
 		render(<SignUp />);
 		expect(screen.getByRole("form")).toBeInTheDocument();
+		expect(screen.getByLabelText("Email:")).toBeInTheDocument();
 	});
 });
