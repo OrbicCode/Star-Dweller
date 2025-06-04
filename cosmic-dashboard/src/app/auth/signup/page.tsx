@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import supabase from "@/app/utils/supabaseClient";
 import styles from "./page.module.css";
 
@@ -9,6 +10,8 @@ export default function SignUp() {
 	const [password, setPassword] = useState<string>("");
 	const [message, setMessage] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+
+	const router = useRouter();
 
 	async function handleSubmit(e: React.FormEvent) {
 		e.preventDefault();
@@ -23,7 +26,9 @@ export default function SignUp() {
 			if (error) {
 				setMessage(error.message);
 			} else if (data) {
-				console.log(data);
+				setTimeout(() => {
+					router.push("/dashboard");
+				}, 2000);
 				setMessage("Sign up successful! Redirecting...");
 			} else {
 				setMessage("No user data returned, please try again.");
