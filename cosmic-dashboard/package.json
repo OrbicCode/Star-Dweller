@@ -7,16 +7,19 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"test": "jest",
+		"test": "NODE_NO_WARNINGS=1 jest",
 		"test:watch": "jest --watch"
 	},
 	"dependencies": {
 		"@supabase/supabase-js": "^2.49.4",
-		"next": "15.3.2",
+		"next": "^15.3.3",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0"
 	},
 	"devDependencies": {
+		"@babel/preset-env": "^7.27.2",
+		"@babel/preset-react": "^7.27.1",
+		"@babel/preset-typescript": "^7.27.1",
 		"@eslint/eslintrc": "^3",
 		"@testing-library/dom": "^10.4.0",
 		"@testing-library/jest-dom": "^6.6.3",
@@ -25,6 +28,7 @@
 		"@types/node": "^20",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
+		"babel-jest": "^30.0.0-beta.3",
 		"eslint": "^9",
 		"eslint-config-next": "15.3.2",
 		"jest": "^29.7.0",

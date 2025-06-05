@@ -52,11 +52,7 @@ export default function SignUp() {
 	return (
 		<div className={styles.container}>
 			<h1>Sign Up</h1>
-			<form
-				onSubmit={handleSubmit}
-				className={styles.form}
-				aria-label='Sign Up Form'
-			>
+			<form onSubmit={handleSubmit} className={styles.form} aria-label='Sign Up Form'>
 				<div>
 					<label htmlFor='email'>Email:</label>
 					<input
@@ -84,19 +80,9 @@ export default function SignUp() {
 						required
 					/>
 				</div>
-				{message ? (
-					<p
-						className={
-							message.includes("successful")
-								? styles.successMessage
-								: styles.errorMessage
-						}
-					>
-						{message}
-					</p>
-				) : null}
-				<button className={styles.submitBtn} disabled={isLoading}>
-					{isLoading ? "Sighning up..." : "Sign Up"}
+				{message ? <p className={message.includes("successful") ? styles.successMessage : styles.errorMessage}>{message}</p> : null}
+				<button className={styles.submitBtn} disabled={isLoading} aria-label='Sign Up Button'>
+					{isLoading ? "Signing up..." : "Sign Up"}
 				</button>
 			</form>
 		</div>
