@@ -49,10 +49,12 @@ export default function SignUp() {
 
 	function handleEmailChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setEmail(e.target.value);
+		setMessage(null);
 	}
 
 	function handlePasswordChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setPassword(e.target.value);
+		setMessage(null);
 	}
 
 	return (
