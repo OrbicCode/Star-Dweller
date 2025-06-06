@@ -69,4 +69,29 @@ describe("Sign Up Page", () => {
 
 		jest.useRealTimers();
 	});
+
+	it("handles errors from supabase", async () => {
+		const mockSignUp = supabase.auth.signUp as jest.Mock;
+		mockSignUp.mockResolvedValue({
+			data: null,
+			error: { message: "Invalid email or password" },
+		});
+
+		render(<SignUp />);
+
+		const emailInput = screen.getByLabelText("Email:");
+		const passwordInput = screen.getByLabelText("Password:");
+		const submitBtn = screen.getByRole("button", { name: "Sign Up Button" });
+
+		act(() => {
+			fireEvent.change(emailInput, { target: { value: "test@example.com" } });
+			fireEvent.change(passwordInput, { target: { value: "password123" } });
+			fireEvent.click(submitBtn);
+		});
+
+		await waitFor(() => {
+			expect(screen.getByText("Invalid email or password")).toBeInTheDocument();
+			expect(submitBtn).not.toBeDisabled();
+		});
+	});
 });
