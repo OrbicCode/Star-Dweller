@@ -94,4 +94,27 @@ describe("Sign Up Page", () => {
 			expect(submitBtn).not.toBeDisabled();
 		});
 	});
+
+	it("handles user_already_exists error from supabase", async () => {
+		const mockSignUp = supabase.auth.signUp as jest.Mock;
+		mockSignUp.mockResolvedValue({
+			data: null,
+			error: { message: "User already registered", code: "user_already_exists" },
+		});
+		render(<SignUp />);
+
+		const emailInput = screen.getByLabelText("Email:");
+		const passwordInput = screen.getByLabelText("Password:");
+		const submitBtn = screen.getByRole("button", { name: "Sign Up Button" });
+
+		act(() => {
+			fireEvent.change(emailInput, { target: { value: "test@example.com" } });
+			fireEvent.change(passwordInput, { target: { value: "password123" } });
+			fireEvent.click(submitBtn);
+		});
+
+		await waitFor(() => {
+			expect(screen.getByText("This e-mail already exists, please signup again with different details")).toBeInTheDocument();
+		});
+	});
 });

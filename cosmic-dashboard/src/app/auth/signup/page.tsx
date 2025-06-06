@@ -18,6 +18,12 @@ export default function SignUp() {
 		setIsLoading(true);
 		setMessage(null);
 
+		if (!email || !password) {
+			setMessage("Email and Password are required");
+			setIsLoading(false);
+			return;
+		}
+
 		try {
 			const { data, error } = await supabase.auth.signUp({
 				email,
