@@ -70,7 +70,7 @@ describe("Sign Up Page", () => {
 		jest.useRealTimers();
 	});
 
-	it("handles errors from supabase", async () => {
+	it("handles displaying errors from supabase", async () => {
 		const mockSignUp = supabase.auth.signUp as jest.Mock;
 		mockSignUp.mockResolvedValue({
 			data: null,

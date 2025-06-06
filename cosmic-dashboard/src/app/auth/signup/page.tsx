@@ -24,8 +24,14 @@ export default function SignUp() {
 				password,
 			});
 			if (error) {
-				setMessage(error.message);
-			} else if (data) {
+				console.log(error, error.code);
+				if (error.code === "user_already_exists") {
+					setMessage("This e-mail already exists, please signup again with different details");
+				} else {
+					setMessage(error.message);
+				}
+			} else if (data.user) {
+				console.log(data, error);
 				setTimeout(() => {
 					router.push("/dashboard");
 				}, 2000);
