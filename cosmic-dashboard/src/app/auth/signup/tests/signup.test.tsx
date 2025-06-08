@@ -1,7 +1,6 @@
 import { fireEvent, render, screen, act, waitFor } from "@testing-library/react";
 import supabase from "@/app/utils/supabaseClient";
 import SignUp from "../page";
-import { mock } from "node:test";
 
 const push = jest.fn();
 jest.mock("next/navigation", () => ({

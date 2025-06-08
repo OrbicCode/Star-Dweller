@@ -8,7 +8,11 @@
 		"start": "next start",
 		"lint": "next lint",
 		"test": "NODE_NO_WARNINGS=1 jest",
-		"test:watch": "jest --watch"
+		"test:watch": "jest --watch",
+		"test:e2e": "playwright test",
+		"test:e2e:headed": "playwright test --headed",
+		"test:e2e:debug": "playwright test --debug",
+		"pw:report": "playwright show-report"
 	},
 	"dependencies": {
 		"@supabase/supabase-js": "^2.49.4",
@@ -21,6 +25,7 @@
 		"@babel/preset-react": "^7.27.1",
 		"@babel/preset-typescript": "^7.27.1",
 		"@eslint/eslintrc": "^3",
+		"@playwright/test": "^1.52.0",
 		"@testing-library/dom": "^10.4.0",
 		"@testing-library/jest-dom": "^6.6.3",
 		"@testing-library/react": "^16.3.0",
