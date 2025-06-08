@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, act, waitFor } from "@testing-library/react";
 import supabase from "@/app/utils/supabaseClient";
 import SignUp from "../page";
+import { mock } from "node:test";
 
 const push = jest.fn();
 jest.mock("next/navigation", () => ({
@@ -116,5 +117,19 @@ describe("Sign Up Page", () => {
 		await waitFor(() => {
 			expect(screen.getByText("This e-mail already exists, please signup again with different details")).toBeInTheDocument();
 		});
+	});
+
+	it("prevents submittion with empty form", () => {
+		const mockSignUp = supabase.auth.signUp as jest.Mock;
+
+		render(<SignUp />);
+
+		const submitBtn = screen.getByRole("button", { name: "Sign Up Button" });
+
+		act(() => {
+			fireEvent.click(submitBtn);
+		});
+
+		expect(mockSignUp).not.toHaveBeenCalled();
 	});
 });
