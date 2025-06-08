@@ -4,6 +4,7 @@ export default defineConfig({
 	testDir: "./e2e", // Directory for your E2E tests
 	timeout: 30 * 1000, // Each test can run for up to 30 seconds
 	retries: 0, // Set to >0 to retry failing tests
+	reporter: [["html", { open: "never" }]],
 	use: {
 		baseURL: "http://localhost:3000", // Change if your dev server runs elsewhere
 		viewport: { width: 1280, height: 720 },

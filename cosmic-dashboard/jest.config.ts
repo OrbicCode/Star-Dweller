@@ -13,6 +13,7 @@ const config: Config = {
 		"^.+\\.(ts|tsx)$": "babel-jest", // Use babel-jest for TypeScript/JSX files
 	},
 	transformIgnorePatterns: ["/node_modules/(?!(@supabase|@babel|@firebase|uuid|lodash-es)/)"],
+	testPathIgnorePatterns: ["/node_modules/", "/e2e/"],
 	moduleNameMapper: {
 		"^@/(.*)$": "<rootDir>/src/$1",
 	},

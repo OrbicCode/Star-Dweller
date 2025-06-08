@@ -118,7 +118,7 @@ describe("Sign Up Page", () => {
 		});
 	});
 
-	it("prevents submittion with empty form", () => {
+	it("prevents submittion with empty form, shows errors", () => {
 		const mockSignUp = supabase.auth.signUp as jest.Mock;
 
 		render(<SignUp />);
@@ -130,5 +130,7 @@ describe("Sign Up Page", () => {
 		});
 
 		expect(mockSignUp).not.toHaveBeenCalled();
+		expect(screen.getByText("Email is required"));
+		expect(screen.getByText("Password is required"));
 	});
 });

@@ -8,6 +8,8 @@ import styles from "./page.module.css";
 export default function SignUp() {
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
+	const [emailError, setEmailError] = useState<string | null>(null);
+	const [passwordError, setPasswordError] = useState<string | null>(null);
 	const [message, setMessage] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -18,8 +20,27 @@ export default function SignUp() {
 		setIsLoading(true);
 		setMessage(null);
 
-		if (!email || !password) {
-			setMessage("Email and Password are required");
+		const sanEmail = email.trim().toLowerCase();
+		const sanPassword = password.trim();
+		let hasError: boolean = false;
+
+		if (!sanEmail) {
+			setEmailError("Email is required");
+			hasError = true;
+		} else if (!sanEmail.includes("@") || !sanEmail.includes(".")) {
+			setEmailError("Enter valid Email");
+			hasError = true;
+		}
+
+		if (!sanPassword) {
+			setPasswordError("Password is required");
+			hasError = true;
+		} else if (sanPassword.length < 8) {
+			setPasswordError("Password must be at least 8 chararcters");
+			hasError = true;
+		}
+
+		if (hasError) {
 			setIsLoading(false);
 			return;
 		}
@@ -56,11 +77,13 @@ export default function SignUp() {
 	function handleEmailChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setEmail(e.target.value);
 		setMessage(null);
+		setEmailError(null);
 	}
 
 	function handlePasswordChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setPassword(e.target.value);
 		setMessage(null);
+		setPasswordError(null);
 	}
 
 	return (
@@ -70,15 +93,15 @@ export default function SignUp() {
 				<div>
 					<label htmlFor='email'>Email:</label>
 					<input
-						type='email'
+						type='text'
 						id='email'
 						name='email'
 						value={email}
 						onChange={handleEmailChange}
 						className={styles.input}
 						disabled={isLoading}
-						required
 					/>
+					{emailError ? <p className={styles.inputError}>{emailError}</p> : null}
 				</div>
 				<div>
 					<label htmlFor='password'>Password:</label>
@@ -90,9 +113,8 @@ export default function SignUp() {
 						onChange={handlePasswordChange}
 						className={styles.input}
 						disabled={isLoading}
-						minLength={8}
-						required
 					/>
+					{passwordError ? <p className={styles.inputError}>{passwordError}</p> : null}
 				</div>
 				{message ? <p className={message.includes("successful") ? styles.successMessage : styles.errorMessage}>{message}</p> : null}
 				<button className={styles.submitBtn} disabled={isLoading} aria-label='Sign Up Button'>
