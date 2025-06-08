@@ -7,6 +7,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
+		"format": "prettier --write .",
 		"test": "NODE_NO_WARNINGS=1 jest",
 		"test:watch": "jest --watch",
 		"test:e2e": "playwright test",
@@ -14,6 +15,13 @@
 		"test:e2e:debug": "playwright test --debug",
 		"pw:report": "playwright show-report",
 		"prepare": "husky"
+	},
+	"lint-staged": {
+		"*.{ts,tsx}": [
+			"eslint --fix",
+			"prettier --write",
+			"tsc --noEmit"
+		]
 	},
 	"dependencies": {
 		"@supabase/supabase-js": "^2.49.4",
@@ -40,6 +48,8 @@
 		"husky": "^9.1.7",
 		"jest": "^29.7.0",
 		"jest-environment-jsdom": "^29.7.0",
+		"lint-staged": "^16.1.0",
+		"prettier": "^3.5.3",
 		"ts-node": "^10.9.2",
 		"typescript": "^5"
 	}
