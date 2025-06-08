@@ -1,4 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm test
+echo "HUSKY PRE-PUSH TEST" > /tmp/husky-pre-push.log
+exit 1
