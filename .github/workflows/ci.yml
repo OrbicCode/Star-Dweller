@@ -15,7 +15,7 @@ jobs:
         runs-on: ubuntu-latest
         defaults:
             run:
-                working-directory: .
+                working-directory: ./cosmic-dashboard
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
@@ -42,7 +42,7 @@ jobs:
         runs-on: ubuntu-latest
         defaults:
             run:
-                working-directory: .
+                working-directory: ./cosmic-dashboard
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
@@ -63,7 +63,7 @@ jobs:
         runs-on: ubuntu-latest
         defaults:
             run:
-                working-directory: .
+                working-directory: ./cosmic-dashboard
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
