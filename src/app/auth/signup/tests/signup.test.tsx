@@ -1,7 +1,20 @@
-import { screen, render, fireEvent } from '@testing-library/react';
+import { screen, render, fireEvent, waitFor } from '@testing-library/react';
 import Signup from '../page';
+import { supabase } from '@/utils/supabaseClient';
+
+jest.mock('@/utils/supabaseClient', () => ({
+  supabase: {
+    auth: {
+      signUp: jest.fn(),
+    },
+  },
+}));
 
 describe('Sign Up Page', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('renders the form', () => {
     render(<Signup />);
 
@@ -22,11 +35,20 @@ describe('Sign Up Page', () => {
   });
 
   it('Loading state disables inputs, buttons and displays messages', () => {
+    const mockSignUp = supabase.auth.signUp as jest.Mock;
+    mockSignUp.mockResolvedValue({
+      data: { user: { email: 'test@example.com' } },
+      error: null,
+    });
+
     render(<Signup />);
 
     const emailInput = screen.getByLabelText('Email:');
     const passwordInput = screen.getByLabelText('Password:');
     const submitBtn = screen.getByRole('button');
+
+    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
+    fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.click(screen.getByRole('button'));
 
     expect(emailInput).toBeDisabled();
@@ -34,5 +56,49 @@ describe('Sign Up Page', () => {
     expect(submitBtn).toHaveTextContent('Signing Up...');
   });
 
-  it('signs up user successfully', () => {});
+  it('signs up user successfully', async () => {
+    const mockSignUp = supabase.auth.signUp as jest.Mock;
+    mockSignUp.mockResolvedValue({
+      data: { user: { email: 'test@example.com' } },
+      error: null,
+    });
+
+    render(<Signup />);
+
+    const emailInput = screen.getByLabelText('Email:');
+    const passwordInput = screen.getByLabelText('Password:');
+    const submitBtn = screen.getByRole('button');
+
+    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
+    fireEvent.change(passwordInput, { target: { value: 'password123' } });
+    fireEvent.click(submitBtn);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText('Sign Up successful, redirecting.')
+      ).toBeInTheDocument();
+    });
+  });
+
+  it('displays error for user already registered', async () => {
+    const mockSignUp = supabase.auth.signUp as jest.Mock;
+    mockSignUp.mockResolvedValue({
+      data: null,
+      error: { message: 'User already registered' },
+    });
+
+    render(<Signup />);
+
+    const emailInput = screen.getByLabelText('Email:');
+    const passwordInput = screen.getByLabelText('Password:');
+    const submitBtn = screen.getByRole('button');
+
+    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
+    fireEvent.change(passwordInput, { target: { value: 'password123' } });
+    fireEvent.click(submitBtn);
+
+    await waitFor(() => {
+      expect(screen.getByText('Email already in use')).toBeInTheDocument();
+    });
+  });
 });

@@ -1,7 +1,7 @@
 'use client';
 
-// import { supabase } from "@/utils/supabaseClient";
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
+import { supabase } from '@/utils/supabaseClient';
 
 export default function Signup() {
   const [email, setEmail] = useState<string>('');
@@ -9,20 +9,58 @@ export default function Signup() {
   const [emailError, setEmailError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  // const [message, setMessage] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleEmailChange(e: ChangeEvent<HTMLInputElement>) {
+    setEmail(e.target.value);
+    setEmailError(null);
+  }
+
+  function handlePasswordChange(e: ChangeEvent<HTMLInputElement>) {
+    setPassword(e.target.value);
+    setPasswordError(null);
+  }
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setEmailError(null);
+    setPasswordError(null);
     setIsLoading(true);
 
     const sanEmail = email.trim();
     const sanPassword = password.trim();
 
+    let hasError = false;
     if (!sanEmail) {
       setEmailError('Email required');
+      hasError = true;
     }
     if (!sanPassword) {
       setPasswordError('Password required');
+      hasError = true;
+    }
+    if (hasError) {
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email: sanEmail,
+        password: sanPassword,
+      });
+
+      if (error) {
+        if (error.message === 'User already registered') {
+          setMessage('Email already in use');
+        }
+      } else if (data.user) {
+        setMessage('Sign Up successful, redirecting.');
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -34,7 +72,7 @@ export default function Signup() {
           id='email'
           name='email'
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={handleEmailChange}
           disabled={isLoading}
         />
         {emailError ? <p>{emailError}</p> : null}
@@ -42,13 +80,14 @@ export default function Signup() {
         <input
           id='password'
           name='password'
-          onChange={e => setPassword(e.target.value)}
+          onChange={handlePasswordChange}
           disabled={isLoading}
         />
         {passwordError ? <p>{passwordError}</p> : null}
         <button aria-label='Sign Up Button'>
           {isLoading ? 'Signing Up...' : 'Sign Up'}
         </button>
+        {message ? <p>{message}</p> : null}
       </form>
     </div>
   );
