@@ -27,13 +27,22 @@ export default function Signup() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
-        <input id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <label htmlFor='email'>Email:</label>
+        <input
+          id='email'
+          name='email'
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+        />
         {emailError ? <p>{emailError}</p> : null}
-        <label htmlFor="password">Password:</label>
-        <input id="password" name="password" onChange={(e) => setPassword(e.target.value)} />
+        <label htmlFor='password'>Password:</label>
+        <input
+          id='password'
+          name='password'
+          onChange={e => setPassword(e.target.value)}
+        />
         {passwordError ? <p>{passwordError}</p> : null}
-        <button aria-label="Sign Up Button">Sign Up</button>
+        <button aria-label='Sign Up Button'>Sign Up</button>
       </form>
     </div>
   );

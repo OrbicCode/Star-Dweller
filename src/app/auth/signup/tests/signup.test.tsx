@@ -7,7 +7,9 @@ describe('Sign Up Page', () => {
 
     expect(screen.getByLabelText('Email:')).toBeInTheDocument();
     expect(screen.getByLabelText('Password:')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Sign Up Button' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'Sign Up Button' })
+    ).toBeInTheDocument();
   });
 
   it('displays error when inputs are empty', () => {
