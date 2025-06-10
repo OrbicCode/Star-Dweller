@@ -26,10 +26,13 @@ describe('Sign Up Page', () => {
 
     const emailInput = screen.getByLabelText('Email:');
     const passwordInput = screen.getByLabelText('Password:');
-
+    const submitBtn = screen.getByRole('button');
     fireEvent.click(screen.getByRole('button'));
 
     expect(emailInput).toBeDisabled();
     expect(passwordInput).toBeDisabled();
+    expect(submitBtn).toHaveTextContent('Signing Up...');
   });
+
+  it('signs up user successfully', () => {});
 });

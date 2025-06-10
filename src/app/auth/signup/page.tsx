@@ -8,10 +8,12 @@ export default function Signup() {
   const [password, setPassword] = useState<string>('');
   const [emailError, setEmailError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   // const [message, setMessage] = useState<string | null>(null);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setIsLoading(true);
 
     const sanEmail = email.trim();
     const sanPassword = password.trim();
@@ -33,6 +35,7 @@ export default function Signup() {
           name='email'
           value={email}
           onChange={e => setEmail(e.target.value)}
+          disabled={isLoading}
         />
         {emailError ? <p>{emailError}</p> : null}
         <label htmlFor='password'>Password:</label>
@@ -40,9 +43,12 @@ export default function Signup() {
           id='password'
           name='password'
           onChange={e => setPassword(e.target.value)}
+          disabled={isLoading}
         />
         {passwordError ? <p>{passwordError}</p> : null}
-        <button aria-label='Sign Up Button'>Sign Up</button>
+        <button aria-label='Sign Up Button'>
+          {isLoading ? 'Signing Up...' : 'Sign Up'}
+        </button>
       </form>
     </div>
   );

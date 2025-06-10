@@ -15,11 +15,5 @@ const eslintConfig = [
     'next/typescript',
     'plugin:prettier/recommended'
   ),
-  {
-    rules: {
-      quotes: ['error', 'single', { avoidEscape: true }],
-      'prettier/prettier': ['error', { jsxSingleQuote: true }],
-    },
-  },
 ];
 export default eslintConfig;
