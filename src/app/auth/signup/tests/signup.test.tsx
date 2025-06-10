@@ -1,4 +1,10 @@
-import { screen, render, fireEvent, waitFor } from '@testing-library/react';
+import {
+  screen,
+  render,
+  fireEvent,
+  waitFor,
+  act,
+} from '@testing-library/react';
 import Signup from '../page';
 import { supabase } from '@/utils/supabaseClient';
 
@@ -8,6 +14,13 @@ jest.mock('@/utils/supabaseClient', () => ({
       signUp: jest.fn(),
     },
   },
+}));
+
+const mockPush = jest.fn();
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: mockPush,
+  }),
 }));
 
 describe('Sign Up Page', () => {
@@ -45,7 +58,7 @@ describe('Sign Up Page', () => {
 
     const emailInput = screen.getByLabelText('Email:');
     const passwordInput = screen.getByLabelText('Password:');
-    const submitBtn = screen.getByRole('button');
+    const submitBtn = screen.getByRole('button', { name: 'Sign Up Button' });
 
     fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
@@ -56,28 +69,36 @@ describe('Sign Up Page', () => {
     expect(submitBtn).toHaveTextContent('Signing Up...');
   });
 
-  it('signs up user successfully', async () => {
+  it('signs up user successfully and redirects', async () => {
     const mockSignUp = supabase.auth.signUp as jest.Mock;
     mockSignUp.mockResolvedValue({
       data: { user: { email: 'test@example.com' } },
       error: null,
     });
 
+    jest.useFakeTimers();
+
     render(<Signup />);
 
     const emailInput = screen.getByLabelText('Email:');
     const passwordInput = screen.getByLabelText('Password:');
-    const submitBtn = screen.getByRole('button');
+    const submitBtn = screen.getByRole('button', { name: 'Sign Up Button' });
 
     fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.click(submitBtn);
 
-    await waitFor(() => {
-      expect(
-        screen.getByText('Sign Up successful, redirecting.')
-      ).toBeInTheDocument();
+    await screen.findByText('Sign Up successful, redirecting.');
+
+    await act(async () => {
+      jest.advanceTimersByTime(2000);
     });
+
+    await waitFor(() => {
+      expect(mockPush).toHaveBeenCalledWith('/dashboard');
+    });
+
+    jest.useRealTimers();
   });
 
   it('displays error for user already registered', async () => {
@@ -91,7 +112,7 @@ describe('Sign Up Page', () => {
 
     const emailInput = screen.getByLabelText('Email:');
     const passwordInput = screen.getByLabelText('Password:');
-    const submitBtn = screen.getByRole('button');
+    const submitBtn = screen.getByRole('button', { name: 'Sign Up Button' });
 
     fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
     fireEvent.change(passwordInput, { target: { value: 'password123' } });

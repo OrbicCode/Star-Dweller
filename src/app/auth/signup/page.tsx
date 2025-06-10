@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, ChangeEvent } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
+import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabaseClient';
 
 export default function Signup() {
@@ -10,15 +11,18 @@ export default function Signup() {
   const [passwordError, setPasswordError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [message, setMessage] = useState<string | null>(null);
+  const router = useRouter();
 
   function handleEmailChange(e: ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
     setEmailError(null);
+    setMessage(null);
   }
 
   function handlePasswordChange(e: ChangeEvent<HTMLInputElement>) {
     setPassword(e.target.value);
     setPasswordError(null);
+    setMessage(null);
   }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -45,7 +49,6 @@ export default function Signup() {
       setPasswordError('Password must have at least 8 characters');
       hasError = true;
     }
-
     if (hasError) {
       setIsLoading(false);
       return;
@@ -58,18 +61,32 @@ export default function Signup() {
       });
 
       if (error) {
-        if (error.message === 'User already registered') {
+        console.log({ data, error });
+        if (error.message.includes('already registered')) {
           setMessage('Email already in use');
+        } else {
+          setMessage('Unexpected error, please try again later.');
         }
       } else if (data.user) {
+        console.log({ data, error });
         setMessage('Sign Up successful, redirecting.');
       }
     } catch (err) {
       console.error(err);
+      setMessage('Unexpected error, please try again later.');
     } finally {
       setIsLoading(false);
     }
   }
+
+  useEffect(() => {
+    if (message === 'Sign Up successful, redirecting.') {
+      const timer = setTimeout(() => {
+        router.push('/dashboard');
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [message, router]);
 
   return (
     <div>
@@ -79,21 +96,30 @@ export default function Signup() {
           id='email'
           name='email'
           value={email}
+          placeholder='space@cosmic.com'
           onChange={handleEmailChange}
           disabled={isLoading}
         />
+
         {emailError ? <p>{emailError}</p> : null}
+
         <label htmlFor='password'>Password:</label>
         <input
+          type='password'
           id='password'
           name='password'
+          value={password}
+          placeholder='password'
           onChange={handlePasswordChange}
           disabled={isLoading}
         />
+
         {passwordError ? <p>{passwordError}</p> : null}
-        <button aria-label='Sign Up Button'>
+
+        <button aria-label='Sign Up Button' disabled={isLoading}>
           {isLoading ? 'Signing Up...' : 'Sign Up'}
         </button>
+
         {message ? <p>{message}</p> : null}
       </form>
     </div>
