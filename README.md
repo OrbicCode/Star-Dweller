@@ -16,55 +16,57 @@ Coming soon! For now, check out my project plan and mockups in [Figma](https://w
 
 ## ✨ Features
 
--   Space-Themed Widgets:
+- Space-Themed Widgets:
 
-    -   To-Do: Manage tasks
-    -   Weather: Current conditions
-    -   Space News: Headlines filtered for space topics using NewsAPI.
-    -   Next SpaceX Launch: Upcoming launch details
-    -   Who’s in Space?: Current astronauts on the ISS via Open Notify.
-    -   Mars Rover Photo: Daily images from NASA’s Mars rovers.
-    -   ISS Location: current ISS location
+  - To-Do: Manage tasks
+  - Weather: Current conditions
+  - Space News: Headlines filtered for space topics using NewsAPI.
+  - Next SpaceX Launch: Upcoming launch details
+  - Who’s in Space?: Current astronauts on the ISS via Open Notify.
+  - Mars Rover Photo: Daily images from NASA’s Mars rovers.
+  - ISS Location: current ISS location
 
--   Responsive Design:
+- Responsive Design:
 
-    -   Mobile: Vertical stack
-    -   Tablet: 2 column grid
-    -   Desktop: 3 column grid
+  - Mobile: Vertical stack
+  - Tablet: 2 column grid
+  - Desktop: 3 column grid
 
--   Cosmic Dark Theme: Dark blue/purple cards and NASA photo of the day background
+- Cosmic Dark Theme: Dark blue/purple cards and NASA photo of the day background
 
 ## 🛠️ Tech Stack
 
--   Frontend: Next.js, TypeScript
+- Frontend: Next.js, TypeScript
 
--   APIs:
+- APIs:
 
-    -   NASA (Photo of the Day, Mars Rover Photos)
-    -   Open Notify (ISS location, Astronauts)
-    -   SpaceX API (Launch Times)
-    -   NewsAPI (Space News)
-    -   Official Joke (Random Jokes)
-    -   Quote Garden (Random Quotes)
+  - NASA (Photo of the Day, Mars Rover Photos)
+  - Open Notify (ISS location, Astronauts)
+  - SpaceX API (Launch Times)
+  - NewsAPI (Space News)
+  - Official Joke (Random Jokes)
+  - Quote Garden (Random Quotes)
 
--   Tools:
+- Tools:
 
-    -   Figma: UI design and project plan (user stories, MVPs, sprints)
-    -   Notion: Daily standups to be Agile
-    -   GitHub Issues: Task tracking
-    -   GitHub Actions/Husky: Pull request/pre-commit checks
-    -   Jest/Playwright: TDD approach with Unit Tests and end-to-end tests
-    -   Vercel: Deployment
+  - Figma: UI design and project plan (user stories, MVPs, sprints)
+  - Notion: Daily standups to be Agile
+  - GitHub Issues: Task tracking
+  - GitHub Actions/Husky: Pull request/pre-commit checks
+  - Jest/Playwright: TDD approach with Unit Tests and end-to-end tests
+  - Vercel: Deployment
 
--   Database: Supabase: For user auth
+- Database: Supabase: For user auth
 
 ## 📆 Project Roadmap
 
 - Sprint 1
+
   - Project Plan in Figma
   - Basic UI design
- 
+
 - Sprint 2
+
   - Next.js/TypeScript setup
   - Supabase setup
   - Husky setup
@@ -73,22 +75,24 @@ Coming soon! For now, check out my project plan and mockups in [Figma](https://w
   - Testing
 
 - Sprint 3
+
   - Header
   - To-Do list
   - NASA photo background
- 
+
 - Sprint 4
+
   - SpaceX, Joke, Quote, Who's in Space widgets
- 
+
 - Sprint 5
+
   - Space News, Weather, Mars Rover, ISS location widgets
 
 - Sprint 6
   - Final Polish
   - Deployment to Vercel
   - Documentation
- 
+
 ## 👨‍💻 About Me
 
 I’m a budding developer passionate about building innovative, visually appealing apps. This project is my hands-on learning journey, pushing me to master TypeScript and TDD while refining my skills in responsive design, Next.js, API integration and agile development. Connect with me on [LinkedIn](https://www.linkedin.com/in/james-o-kane-orbiccode/) to follow my progress!
-
