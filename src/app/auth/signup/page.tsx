@@ -34,11 +34,18 @@ export default function Signup() {
     if (!sanEmail) {
       setEmailError('Email required');
       hasError = true;
+    } else if (!sanEmail.includes('@') || !sanEmail.includes('.')) {
+      setEmailError('Invalid email');
+      hasError = true;
     }
     if (!sanPassword) {
       setPasswordError('Password required');
       hasError = true;
+    } else if (sanPassword.length < 8) {
+      setPasswordError('Password must have at least 8 characters');
+      hasError = true;
     }
+
     if (hasError) {
       setIsLoading(false);
       return;
