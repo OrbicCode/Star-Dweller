@@ -8,8 +8,8 @@ test.describe('Sign Up Page', () => {
   test('signup success shows message and redirects', async ({ page }) => {
     await signupSuccess(page);
     await page.goto('/auth/signup');
-    await page.getByLabel('Email:').type('test@example.com');
-    await page.getByLabel('Password:').type('password123');
+    await page.getByLabel('Email').type('test@example.com');
+    await page.getByLabel('Password').type('password123');
     await page.getByRole('button', { name: 'Sign up button' }).click();
 
     await expect(
@@ -24,8 +24,8 @@ test.describe('Sign Up Page', () => {
   test('shows user exists error', async ({ page }) => {
     await signupExistError(page);
     await page.goto('/auth/signup');
-    await page.getByLabel('Email:').type('test@example.com');
-    await page.getByLabel('Password:').type('password123');
+    await page.getByLabel('Email').type('test@example.com');
+    await page.getByLabel('Password').type('password123');
     await page.getByRole('button', { name: 'Sign up button' }).click();
 
     await expect(page.getByText('Email already in use')).toBeVisible();

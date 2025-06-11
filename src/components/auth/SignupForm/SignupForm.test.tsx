@@ -16,8 +16,8 @@ describe('Sign Up Form', () => {
 
   it('renders inputs and button', () => {
     render(<SignupForm {...defaultProps} />);
-    expect(screen.getByLabelText('Email:')).toBeInTheDocument();
-    expect(screen.getByLabelText('Password:')).toBeInTheDocument();
+    expect(screen.getByLabelText('Email')).toBeInTheDocument();
+    expect(screen.getByLabelText('Password')).toBeInTheDocument();
     expect(
       screen.getByRole('button', { name: 'Sign up button' })
     ).toBeInTheDocument();
@@ -35,8 +35,8 @@ describe('Sign Up Form', () => {
 
   it('disables inputs when isLoading state is true', () => {
     render(<SignupForm {...defaultProps} isLoading={true} />);
-    expect(screen.getByLabelText('Email:')).toBeDisabled();
-    expect(screen.getByLabelText('Password:')).toBeDisabled();
+    expect(screen.getByLabelText('Email')).toBeDisabled();
+    expect(screen.getByLabelText('Password')).toBeDisabled();
     expect(
       screen.getByRole('button', { name: 'Sign up button' })
     ).toBeDisabled();

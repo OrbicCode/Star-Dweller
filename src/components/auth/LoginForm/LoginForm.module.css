@@ -1,0 +1,72 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 75%;
+  margin: 0 auto;
+}
+
+.form label {
+  font-size: 1.125rem;
+}
+
+.form input {
+  color: inherit;
+  background: rgba(58, 80, 107, 0.3);
+  display: block;
+  width: 100%;
+  padding: 1em 1.5em;
+  margin: 0 auto 0.2em;
+  border: none;
+  border-radius: 25px;
+}
+
+.form input::placeholder {
+  color: inherit;
+  opacity: 0.7;
+}
+
+.messageContainer {
+  min-height: 1.125rem;
+}
+
+.inputError {
+  font-size: 0.875rem;
+  color: var(--red);
+  margin: 0;
+}
+
+.form button {
+  font-family: inherit;
+  font-size: 1.125rem;
+  color: inherit;
+  background: var(--blue-grey);
+  width: fit-content;
+  padding: 0.75em 3em;
+  margin: 1em auto 0;
+  border: none;
+  border-radius: 25px;
+  transition: background 0.3s ease-in-out;
+}
+
+.form button:hover,
+.form button:hover {
+  background: var(--green);
+}
+
+.successMessage,
+.errorMessage {
+  margin: 0;
+}
+
+.successMessage {
+  color: var(--green);
+}
+
+.errorMessage {
+  color: var(--red);
+}
+
+.gotoSignup {
+  margin: 0;
+}

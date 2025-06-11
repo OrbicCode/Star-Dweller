@@ -1,6 +1,10 @@
 :root {
-  --black: #ffffff;
-  --red: #171717;
+  --black: #060112;
+  --dark-blue: #012840;
+  --blue-grey: #3a506b;
+  --green: #107e57;
+  --yellow: #f8bc04;
+  --red: #c9374c;
 }
 
 * {
@@ -15,4 +19,12 @@ body {
 
 body {
   font-family: var(--font-space-grotesk), 'sans-serif';
+  font-size: 1rem;
+  color: whitesmoke;
+  background: linear-gradient(135deg, var(--black), var(--dark-blue));
+  margin: 0;
+}
+
+h1 {
+  font-size: 3rem;
 }

@@ -31,8 +31,8 @@ describe('Sign Up Page', () => {
   it('renders the form', () => {
     render(<Signup />);
 
-    expect(screen.getByLabelText('Email:')).toBeInTheDocument();
-    expect(screen.getByLabelText('Password:')).toBeInTheDocument();
+    expect(screen.getByLabelText('Email')).toBeInTheDocument();
+    expect(screen.getByLabelText('Password')).toBeInTheDocument();
     expect(
       screen.getByRole('button', { name: 'Sign up button' })
     ).toBeInTheDocument();
@@ -56,8 +56,8 @@ describe('Sign Up Page', () => {
 
     render(<Signup />);
 
-    const emailInput = screen.getByLabelText('Email:');
-    const passwordInput = screen.getByLabelText('Password:');
+    const emailInput = screen.getByLabelText('Email');
+    const passwordInput = screen.getByLabelText('Password');
     const submitBtn = screen.getByRole('button', { name: 'Sign up button' });
 
     fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
@@ -82,8 +82,8 @@ describe('Sign Up Page', () => {
 
     render(<Signup />);
 
-    const emailInput = screen.getByLabelText('Email:');
-    const passwordInput = screen.getByLabelText('Password:');
+    const emailInput = screen.getByLabelText('Email');
+    const passwordInput = screen.getByLabelText('Password');
     const submitBtn = screen.getByRole('button', { name: 'Sign up button' });
 
     fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
@@ -112,8 +112,8 @@ describe('Sign Up Page', () => {
 
     render(<Signup />);
 
-    const emailInput = screen.getByLabelText('Email:');
-    const passwordInput = screen.getByLabelText('Password:');
+    const emailInput = screen.getByLabelText('Email');
+    const passwordInput = screen.getByLabelText('Password');
     const submitBtn = screen.getByRole('button', { name: 'Sign up button' });
 
     fireEvent.change(emailInput, { target: { value: 'test@example.com' } });

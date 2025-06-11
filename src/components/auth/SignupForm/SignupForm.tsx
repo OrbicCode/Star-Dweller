@@ -1,3 +1,5 @@
+import styles from './SignupForm.module.css';
+
 interface SignupFormProps {
   email: string;
   password: string;
@@ -24,7 +26,6 @@ export default function SignupForm({
   return (
     <form onSubmit={onSubmit} aria-label='Signup Form'>
       <div>
-        <label htmlFor='email'>Email:</label>
         <input
           id='email'
           name='email'
@@ -32,13 +33,14 @@ export default function SignupForm({
           placeholder='space@cosmic.com'
           onChange={onEmailChange}
           disabled={isLoading}
+          aria-label='Email'
         />
-
-        {emailError ? <p>{emailError}</p> : null}
+        <div className={styles.inputErrorContainer}>
+          {emailError ? <p>{emailError}</p> : null}
+        </div>
       </div>
 
       <div>
-        <label htmlFor='password'>Password:</label>
         <input
           type='password'
           id='password'
@@ -47,9 +49,11 @@ export default function SignupForm({
           placeholder='password'
           onChange={onPasswordChange}
           disabled={isLoading}
+          aria-label='Password'
         />
-
-        {passwordError ? <p>{passwordError}</p> : null}
+        <div className={styles.inputErrorContainer}>
+          {passwordError ? <p>{passwordError}</p> : null}
+        </div>
       </div>
 
       <button aria-label='Sign up button' disabled={isLoading}>

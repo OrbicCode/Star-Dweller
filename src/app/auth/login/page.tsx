@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabaseClient';
+import styles from './page.module.css';
 import LoginForm from '@/components/auth/LoginForm/LoginForm';
 
 export default function Login() {
@@ -61,7 +62,6 @@ export default function Login() {
       });
 
       if (error) {
-        console.dir(error, { depth: null });
         if (error.message.includes('Invalid login credentials')) {
           setMessage('Invalid credentials');
         } else {
@@ -87,7 +87,7 @@ export default function Login() {
   }, [message, router]);
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1>Login</h1>
       <LoginForm
         email={email}
