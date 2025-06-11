@@ -1,4 +1,4 @@
-interface SignupFormProps {
+interface LoginFormProps {
   email: string;
   password: string;
   emailError: string | null;
@@ -10,7 +10,7 @@ interface SignupFormProps {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-export default function SignupForm({
+export default function LoginForm({
   email,
   password,
   emailError,
@@ -19,10 +19,9 @@ export default function SignupForm({
   message,
   onEmailChange,
   onPasswordChange,
-  onSubmit,
-}: SignupFormProps) {
+}: LoginFormProps) {
   return (
-    <form onSubmit={onSubmit} aria-label='Signup Form'>
+    <form>
       <div>
         <label htmlFor='email'>Email:</label>
         <input
@@ -33,33 +32,32 @@ export default function SignupForm({
           onChange={onEmailChange}
           disabled={isLoading}
         />
-
-        {emailError ? <p>{emailError}</p> : null}
       </div>
+
+      {emailError ? <p>{emailError}</p> : null}
 
       <div>
         <label htmlFor='password'>Password:</label>
         <input
           type='password'
           id='password'
-          name='password'
           value={password}
           placeholder='password'
           onChange={onPasswordChange}
           disabled={isLoading}
         />
-
-        {passwordError ? <p>{passwordError}</p> : null}
       </div>
 
-      <button aria-label='Sign up button' disabled={isLoading}>
-        {isLoading ? 'Signing up...' : 'Sign up'}
+      {passwordError ? <p>{passwordError}</p> : null}
+
+      <button aria-label='Log in button' disabled={isLoading}>
+        Log in
       </button>
 
       {message ? <p>{message}</p> : null}
 
       <p>
-        Already have an account? <a href='#'>Login</a>
+        Not a user? <a href='#'>Sign up</a>
       </p>
     </form>
   );

@@ -68,7 +68,7 @@ export default function Signup() {
           setMessage('Unexpected error, please try again later.');
         }
       } else if (data.user) {
-        setMessage('Sign Up successful, redirecting.');
+        setMessage('Sign up successful, redirecting.');
       }
     } catch (err) {
       console.error(err);
@@ -79,7 +79,7 @@ export default function Signup() {
   }
 
   useEffect(() => {
-    if (message === 'Sign Up successful, redirecting.') {
+    if (message === 'Sign up successful, redirecting.') {
       const timer = setTimeout(() => {
         router.push('/dashboard');
       }, 2000);
