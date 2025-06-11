@@ -5,7 +5,7 @@ import {
   waitFor,
   act,
 } from '@testing-library/react';
-import Signup from '../page';
+import Signup from './page';
 import { supabase } from '@/utils/supabaseClient';
 
 jest.mock('@/utils/supabaseClient', () => ({
@@ -47,7 +47,7 @@ describe('Sign Up Page', () => {
     expect(screen.getByText('Password required')).toBeInTheDocument();
   });
 
-  it('Loading state disables inputs, buttons and displays messages', () => {
+  it('Loading state disables inputs, buttons and displays messages', async () => {
     const mockSignUp = supabase.auth.signUp as jest.Mock;
     mockSignUp.mockResolvedValue({
       data: { user: { email: 'test@example.com' } },
@@ -64,9 +64,11 @@ describe('Sign Up Page', () => {
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.click(screen.getByRole('button'));
 
-    expect(emailInput).toBeDisabled();
-    expect(passwordInput).toBeDisabled();
-    expect(submitBtn).toHaveTextContent('Signing Up...');
+    await waitFor(() => {
+      expect(emailInput).toBeDisabled();
+      expect(passwordInput).toBeDisabled();
+      expect(submitBtn).toHaveTextContent('Signing Up...');
+    });
   });
 
   it('signs up user successfully and redirects', async () => {

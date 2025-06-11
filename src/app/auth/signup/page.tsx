@@ -3,6 +3,7 @@
 import { useState, useEffect, ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabaseClient';
+import SignupForm from '@/components/auth/SignupForm/SignupForm';
 
 export default function Signup() {
   const [email, setEmail] = useState<string>('');
@@ -88,38 +89,18 @@ export default function Signup() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='email'>Email:</label>
-        <input
-          id='email'
-          name='email'
-          value={email}
-          placeholder='space@cosmic.com'
-          onChange={handleEmailChange}
-          disabled={isLoading}
-        />
-
-        {emailError ? <p>{emailError}</p> : null}
-
-        <label htmlFor='password'>Password:</label>
-        <input
-          type='password'
-          id='password'
-          name='password'
-          value={password}
-          placeholder='password'
-          onChange={handlePasswordChange}
-          disabled={isLoading}
-        />
-
-        {passwordError ? <p>{passwordError}</p> : null}
-
-        <button aria-label='Sign Up Button' disabled={isLoading}>
-          {isLoading ? 'Signing Up...' : 'Sign Up'}
-        </button>
-
-        {message ? <p>{message}</p> : null}
-      </form>
+      <h1>Sign Up</h1>
+      <SignupForm
+        email={email}
+        password={password}
+        emailError={emailError}
+        passwordError={passwordError}
+        isLoading={isLoading}
+        message={message}
+        onEmailChange={handleEmailChange}
+        onPasswordChange={handlePasswordChange}
+        onSubmit={handleSubmit}
+      />
     </div>
   );
 }
