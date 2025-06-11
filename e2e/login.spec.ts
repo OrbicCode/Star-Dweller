@@ -19,6 +19,14 @@ test.describe('Log In Form', () => {
     await expect(page).toHaveURL('/dashboard');
   });
 
+  test('displays required errors for empty inputs', async ({ page }) => {
+    await page.goto('/auth/login');
+    await page.getByRole('button', { name: 'Log In Button' }).click();
+
+    await expect(page.getByText('Email required')).toBeVisible();
+    await expect(page.getByText('Password required')).toBeVisible();
+  });
+
   test('shows invalid credentials error', async ({ page }) => {
     await loginInvalidError(page);
     await page.goto('/auth/login');
