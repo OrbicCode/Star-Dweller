@@ -6,10 +6,6 @@ export async function loginSuccess(page: Page) {
       status: 200,
       contentType: 'application/json',
       body: JSON.stringify({
-        access_token: 'mock-access-token',
-        token_type: 'bearer',
-        expires_in: 3600,
-        refresh_token: 'mock-refresh-token',
         user: {
           id: '123',
           email: 'test@example.com',
@@ -25,8 +21,8 @@ export async function loginInvalidError(page: Page) {
       status: 400,
       contentType: 'application/json',
       body: JSON.stringify({
-        error: 'invalid_grant',
-        error_description: 'Invalid login credentials',
+        AuthApiError: 'Invalid login credentials',
+        message: 'Invalid login credentials',
       }),
     });
   });

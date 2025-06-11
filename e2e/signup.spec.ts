@@ -15,7 +15,7 @@ test.describe('Sign Up Page', () => {
     await expect(
       page.getByText('Sign up successful, redirecting.')
     ).toBeVisible();
-    await page.waitForURL('/dashboard', { timeout: 10000 });
+    await page.waitForURL('/dashboard', { timeout: 5000 });
     await expect(
       page.getByRole('heading', { name: 'Dashboard' })
     ).toBeVisible();

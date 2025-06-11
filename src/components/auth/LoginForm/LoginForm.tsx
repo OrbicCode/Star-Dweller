@@ -19,9 +19,10 @@ export default function LoginForm({
   message,
   onEmailChange,
   onPasswordChange,
+  onSubmit,
 }: LoginFormProps) {
   return (
-    <form>
+    <form onSubmit={onSubmit}>
       <div>
         <label htmlFor='email'>Email:</label>
         <input

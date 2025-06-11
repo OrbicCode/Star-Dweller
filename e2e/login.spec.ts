@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import {
   loginSuccess,
-  //   loginInvalidError,
+  loginInvalidError,
 } from './mocks/supabaseLoginResponses';
 
 test.describe('Log In Form', () => {
@@ -15,6 +15,17 @@ test.describe('Log In Form', () => {
     await expect(
       page.getByText('Log in successful, redirecting.')
     ).toBeVisible();
+    await page.waitForURL('/dashboard', { timeout: 5000 });
     await expect(page).toHaveURL('/dashboard');
+  });
+
+  test('shows invalid credentials error', async ({ page }) => {
+    await loginInvalidError(page);
+    await page.goto('/auth/login');
+    await page.getByLabel('Email:').type('invalid@example.com');
+    await page.getByLabel('Password:').type('password123');
+    await page.getByRole('button', { name: 'Log In Button' }).click();
+
+    await expect(page.getByText('Invalid credentials')).toBeVisible();
   });
 });
