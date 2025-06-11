@@ -24,7 +24,7 @@ export default function SignupForm({
   onSubmit,
 }: SignupFormProps) {
   return (
-    <form onSubmit={onSubmit} aria-label='Signup Form'>
+    <form onSubmit={onSubmit} className={styles.form} aria-label='Signup Form'>
       <div>
         <input
           id='email'
@@ -35,8 +35,10 @@ export default function SignupForm({
           disabled={isLoading}
           aria-label='Email'
         />
-        <div className={styles.inputErrorContainer}>
-          {emailError ? <p>{emailError}</p> : null}
+        <div className={styles.messageContainer}>
+          {emailError ? (
+            <p className={styles.inputError}>{emailError}</p>
+          ) : null}
         </div>
       </div>
 
@@ -51,8 +53,10 @@ export default function SignupForm({
           disabled={isLoading}
           aria-label='Password'
         />
-        <div className={styles.inputErrorContainer}>
-          {passwordError ? <p>{passwordError}</p> : null}
+        <div className={styles.messageContainer}>
+          {passwordError ? (
+            <p className={styles.inputError}>{passwordError}</p>
+          ) : null}
         </div>
       </div>
 
@@ -60,9 +64,21 @@ export default function SignupForm({
         {isLoading ? 'Signing up...' : 'Sign up'}
       </button>
 
-      {message ? <p>{message}</p> : null}
+      <div className={styles.messageContainer}>
+        {message ? (
+          <p
+            className={
+              message.includes('successful')
+                ? styles.successMessage
+                : styles.errorMessage
+            }
+          >
+            {message}
+          </p>
+        ) : null}
+      </div>
 
-      <p>
+      <p className={styles.gotoLogin}>
         Already have an account? <a href='/auth/login'>Login</a>
       </p>
     </form>

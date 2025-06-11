@@ -3,6 +3,7 @@
 import { useState, useEffect, ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabaseClient';
+import styles from './page.module.css';
 import SignupForm from '@/components/auth/SignupForm/SignupForm';
 
 export default function Signup() {
@@ -88,7 +89,7 @@ export default function Signup() {
   }, [message, router]);
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1>Sign Up</h1>
       <SignupForm
         email={email}
