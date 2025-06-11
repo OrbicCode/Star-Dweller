@@ -59,7 +59,7 @@ export default function SignupForm({
       {message ? <p>{message}</p> : null}
 
       <p>
-        Already have an account? <a href='#'>Login</a>
+        Already have an account? <a href='/auth/login'>Login</a>
       </p>
     </form>
   );

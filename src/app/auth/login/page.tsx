@@ -17,6 +17,7 @@ export default function Login() {
   function handleEmailChange(e: React.ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
     setEmailError(null);
+    setPasswordError(null);
     setMessage(null);
   }
 
@@ -63,6 +64,8 @@ export default function Login() {
         console.dir(error, { depth: null });
         if (error.message.includes('Invalid login credentials')) {
           setMessage('Invalid credentials');
+        } else {
+          setMessage('Unexpected error, please try again later.');
         }
       } else if (data.user) {
         setMessage('Log in successful, redirecting.');

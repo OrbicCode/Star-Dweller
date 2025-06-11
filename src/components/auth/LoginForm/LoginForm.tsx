@@ -58,7 +58,7 @@ export default function LoginForm({
       {message ? <p>{message}</p> : null}
 
       <p>
-        Not a user? <a href='#'>Sign up</a>
+        Not a user? <a href='/auth/signup'>Sign up</a>
       </p>
     </form>
   );
