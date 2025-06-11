@@ -1,13 +1,13 @@
 import { Page } from '@playwright/test';
 
-export async function supabaseSuccess(page: Page) {
+export async function signupSuccess(page: Page) {
   await page.route('**/auth/v1/signup', async route => {
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
       body: JSON.stringify({
         data: {
-          user: { id: 'fake-user-id', email: 'test@example.com' },
+          user: { id: '123', email: 'test@example.com' },
           session: null,
         },
         error: null,
@@ -16,7 +16,7 @@ export async function supabaseSuccess(page: Page) {
   });
 }
 
-export async function supabaseExistError(page: Page) {
+export async function signupExistError(page: Page) {
   await page.route('**/auth/v1/signup', async route => {
     await route.fulfill({
       status: 400,

@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabaseClient';
-import SignupForm from '@/components/auth/SignupForm/SignupForm';
+import LoginForm from '@/components/auth/LoginForm/LoginForm';
 
-export default function Signup() {
+export default function Login() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [emailError, setEmailError] = useState<string | null>(null);
@@ -14,13 +14,14 @@ export default function Signup() {
   const [message, setMessage] = useState<string | null>(null);
   const router = useRouter();
 
-  function handleEmailChange(e: ChangeEvent<HTMLInputElement>) {
+  function handleEmailChange(e: React.ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
     setEmailError(null);
+    setPasswordError(null);
     setMessage(null);
   }
 
-  function handlePasswordChange(e: ChangeEvent<HTMLInputElement>) {
+  function handlePasswordChange(e: React.ChangeEvent<HTMLInputElement>) {
     setPassword(e.target.value);
     setPasswordError(null);
     setMessage(null);
@@ -28,8 +29,6 @@ export default function Signup() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setEmailError(null);
-    setPasswordError(null);
     setIsLoading(true);
 
     const sanEmail = email.trim();
@@ -56,30 +55,30 @@ export default function Signup() {
     }
 
     try {
-      const { data, error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email: sanEmail,
         password: sanPassword,
       });
 
       if (error) {
-        if (error.message.includes('already registered')) {
-          setMessage('Email already in use');
+        console.dir(error, { depth: null });
+        if (error.message.includes('Invalid login credentials')) {
+          setMessage('Invalid credentials');
         } else {
           setMessage('Unexpected error, please try again later.');
         }
       } else if (data.user) {
-        setMessage('Sign up successful, redirecting.');
+        setMessage('Log in successful, redirecting.');
       }
     } catch (err) {
       console.error(err);
-      setMessage('Unexpected error, please try again later.');
     } finally {
       setIsLoading(false);
     }
   }
 
   useEffect(() => {
-    if (message === 'Sign up successful, redirecting.') {
+    if (message === 'Log in successful, redirecting.') {
       const timer = setTimeout(() => {
         router.push('/dashboard');
       }, 2000);
@@ -89,8 +88,8 @@ export default function Signup() {
 
   return (
     <div>
-      <h1>Sign Up</h1>
-      <SignupForm
+      <h1>Login</h1>
+      <LoginForm
         email={email}
         password={password}
         emailError={emailError}

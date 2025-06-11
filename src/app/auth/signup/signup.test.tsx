@@ -5,7 +5,7 @@ import {
   waitFor,
   act,
 } from '@testing-library/react';
-import Signup from '../page';
+import Signup from './page';
 import { supabase } from '@/utils/supabaseClient';
 
 jest.mock('@/utils/supabaseClient', () => ({
@@ -34,7 +34,7 @@ describe('Sign Up Page', () => {
     expect(screen.getByLabelText('Email:')).toBeInTheDocument();
     expect(screen.getByLabelText('Password:')).toBeInTheDocument();
     expect(
-      screen.getByRole('button', { name: 'Sign Up Button' })
+      screen.getByRole('button', { name: 'Sign up button' })
     ).toBeInTheDocument();
   });
 
@@ -47,7 +47,7 @@ describe('Sign Up Page', () => {
     expect(screen.getByText('Password required')).toBeInTheDocument();
   });
 
-  it('Loading state disables inputs, buttons and displays messages', () => {
+  it('Loading state disables inputs, buttons and displays messages', async () => {
     const mockSignUp = supabase.auth.signUp as jest.Mock;
     mockSignUp.mockResolvedValue({
       data: { user: { email: 'test@example.com' } },
@@ -58,15 +58,17 @@ describe('Sign Up Page', () => {
 
     const emailInput = screen.getByLabelText('Email:');
     const passwordInput = screen.getByLabelText('Password:');
-    const submitBtn = screen.getByRole('button', { name: 'Sign Up Button' });
+    const submitBtn = screen.getByRole('button', { name: 'Sign up button' });
 
     fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.click(screen.getByRole('button'));
 
-    expect(emailInput).toBeDisabled();
-    expect(passwordInput).toBeDisabled();
-    expect(submitBtn).toHaveTextContent('Signing Up...');
+    await waitFor(() => {
+      expect(emailInput).toBeDisabled();
+      expect(passwordInput).toBeDisabled();
+      expect(submitBtn).toHaveTextContent('Signing up...');
+    });
   });
 
   it('signs up user successfully and redirects', async () => {
@@ -82,13 +84,13 @@ describe('Sign Up Page', () => {
 
     const emailInput = screen.getByLabelText('Email:');
     const passwordInput = screen.getByLabelText('Password:');
-    const submitBtn = screen.getByRole('button', { name: 'Sign Up Button' });
+    const submitBtn = screen.getByRole('button', { name: 'Sign up button' });
 
     fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
     fireEvent.click(submitBtn);
 
-    await screen.findByText('Sign Up successful, redirecting.');
+    await screen.findByText('Sign up successful, redirecting.');
 
     await act(async () => {
       jest.advanceTimersByTime(2000);
@@ -112,7 +114,7 @@ describe('Sign Up Page', () => {
 
     const emailInput = screen.getByLabelText('Email:');
     const passwordInput = screen.getByLabelText('Password:');
-    const submitBtn = screen.getByRole('button', { name: 'Sign Up Button' });
+    const submitBtn = screen.getByRole('button', { name: 'Sign up button' });
 
     fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
     fireEvent.change(passwordInput, { target: { value: 'password123' } });
