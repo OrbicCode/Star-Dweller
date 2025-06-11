@@ -13,7 +13,8 @@
     "test:watch": "jest --watch",
     "test:e2e": "playwright test",
     "test:e2e:headed": "playwright test --headed",
-    "test:e2e:report": "playwright show-report"
+    "test:e2e:report": "playwright show-report",
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
@@ -37,10 +38,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
+    "eslint": "^8.57.1",
     "eslint-config-next": "15.3.3",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.4.1",
+    "husky": "^9.1.7",
     "jest": "^30.0.0",
     "jest-environment-jsdom": "^30.0.0",
     "lint-staged": "^16.1.0",
