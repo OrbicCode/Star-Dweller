@@ -61,14 +61,12 @@ export default function Signup() {
       });
 
       if (error) {
-        console.log({ data, error });
         if (error.message.includes('already registered')) {
           setMessage('Email already in use');
         } else {
           setMessage('Unexpected error, please try again later.');
         }
       } else if (data.user) {
-        console.log({ data, error });
         setMessage('Sign Up successful, redirecting.');
       }
     } catch (err) {
