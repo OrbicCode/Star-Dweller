@@ -62,7 +62,11 @@ export default function Login() {
       });
 
       if (error) {
-        if (error.message.includes('Invalid login credentials')) {
+        if (
+          error.message.includes('Invalid login credentials') ||
+          error.code?.toLowerCase().includes('invalid') ||
+          error.status === 400
+        ) {
           setMessage('Invalid credentials');
         } else {
           setMessage('Unexpected error, please try again later.');

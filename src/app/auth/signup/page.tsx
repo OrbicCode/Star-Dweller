@@ -63,7 +63,11 @@ export default function Signup() {
       });
 
       if (error) {
-        if (error.message.includes('already registered')) {
+        if (
+          error.code === 'user_already_exists' ||
+          error.message?.toLowerCase().includes('already registered') ||
+          error.status === 422
+        ) {
           setMessage('Email already in use');
         } else {
           setMessage('Unexpected error, please try again later.');
