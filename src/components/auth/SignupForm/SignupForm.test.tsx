@@ -1,9 +1,9 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { login } from '@/app/login/actions';
-import LoginForm from './LoginForm';
+import { signup } from '@/app/signup/actions';
+import SignupForm from './SignupForm';
 
-jest.mock('@/app/login/actions', () => ({
-  login: jest.fn(),
+jest.mock('@/app/signup/actions', () => ({
+  signup: jest.fn(),
 }));
 
 const mockPush = jest.fn();
@@ -13,12 +13,12 @@ jest.mock('next/navigation', () => ({
   }),
 }));
 
-describe('Login form', () => {
+describe('signup form', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  it('renders the login form elements', () => {
-    render(<LoginForm />);
+  it('renders the signup form elements', () => {
+    render(<SignupForm />);
 
     expect(screen.getByLabelText('Email')).toBeInTheDocument();
     expect(screen.getByLabelText('Password')).toBeInTheDocument();
@@ -28,7 +28,7 @@ describe('Login form', () => {
   });
 
   it('displays client-side empty fields error', async () => {
-    render(<LoginForm />);
+    render(<SignupForm />);
 
     fireEvent.click(screen.getByRole('button', { name: 'Submit button' }));
 
@@ -39,7 +39,7 @@ describe('Login form', () => {
   });
 
   it('displays client-side invalid email error', async () => {
-    render(<LoginForm />);
+    render(<SignupForm />);
 
     fireEvent.input(screen.getByLabelText('Email'), {
       target: { value: 'invalidexample.com' },
@@ -55,7 +55,7 @@ describe('Login form', () => {
   });
 
   it('displays client-side password too short error', async () => {
-    render(<LoginForm />);
+    render(<SignupForm />);
 
     fireEvent.input(screen.getByLabelText('Email'), {
       target: { value: 'test@example.com' },
@@ -73,7 +73,7 @@ describe('Login form', () => {
   });
 
   it('disables inputs and button onSubmit', async () => {
-    render(<LoginForm />);
+    render(<SignupForm />);
 
     fireEvent.input(screen.getByLabelText('Email'), {
       target: { value: 'test@example.com' },
@@ -92,10 +92,10 @@ describe('Login form', () => {
     });
   });
 
-  it('logs in user and redirects to dashboard', async () => {
-    (login as jest.Mock).mockResolvedValue({ success: true });
+  it('signs up user and redirects to dashboard', async () => {
+    (signup as jest.Mock).mockResolvedValue({ success: true });
 
-    render(<LoginForm />);
+    render(<SignupForm />);
 
     fireEvent.input(screen.getByLabelText('Email'), {
       target: { value: 'test@example.com' },
@@ -106,21 +106,21 @@ describe('Login form', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Submit button' }));
 
     await waitFor(() => {
-      expect(login).toHaveBeenCalledWith(expect.any(FormData));
+      expect(signup).toHaveBeenCalledWith(expect.any(FormData));
     });
-    expect(login).toHaveBeenCalledTimes(1);
+    expect(signup).toHaveBeenCalledTimes(1);
 
     await waitFor(() => {
       expect(mockPush).toHaveBeenCalledWith('/dashboard');
     });
   });
 
-  it('displays server-side invalid credentials error', async () => {
-    (login as jest.Mock).mockResolvedValue({
-      error: 'Invalid login credentials',
+  it('displays user already exists error', async () => {
+    (signup as jest.Mock).mockResolvedValue({
+      error: 'User already registered',
     });
 
-    render(<LoginForm />);
+    render(<SignupForm />);
 
     fireEvent.input(screen.getByLabelText('Email'), {
       target: { value: 'test@example.com' },
@@ -130,7 +130,7 @@ describe('Login form', () => {
     });
     fireEvent.click(screen.getByRole('button', { name: 'Submit button' }));
     await waitFor(() => {
-      expect(screen.getByText('Invalid login credentials')).toBeInTheDocument();
+      expect(screen.getByText('User already registered')).toBeInTheDocument();
     });
   });
 });

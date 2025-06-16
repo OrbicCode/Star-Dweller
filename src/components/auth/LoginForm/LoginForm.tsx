@@ -3,6 +3,7 @@
 import { login } from '@/app/login/actions';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface FormErrors {
   email: string;
@@ -11,6 +12,7 @@ interface FormErrors {
 }
 
 export default function LoginForm() {
+  const router = useRouter();
   const [errors, setErrors] = useState<FormErrors>({
     email: '',
     password: '',
@@ -23,7 +25,7 @@ export default function LoginForm() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setErrors({ email: '', password: '', serverError: '' });
+    setErrors({ email: '', password: '', serverError: null });
 
     const formData = new FormData(e.currentTarget);
     const email = (formData.get('email') as string).trim();
@@ -55,11 +57,17 @@ export default function LoginForm() {
 
     try {
       const result = await login(formData);
-      if (result.error) {
+      if (result && result.error) {
         setMessage(result.error);
+      } else if (result && result.success) {
+        setMessage('Log in successful, redirecting.');
+        router.push('/dashboard');
       }
-    } catch (error) {
-      console.error('Login Error:', error);
+    } catch {
+      setErrors(prev => ({
+        ...prev,
+        serverError: 'An unexpected error occured. Please try again.',
+      }));
     } finally {
       setIsSubmitting(false);
     }
