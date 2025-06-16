@@ -4,6 +4,7 @@ import { login } from '@/app/login/actions';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import styles from './LoginForm.module.css';
 
 interface FormErrors {
   email: string;
@@ -74,7 +75,7 @@ export default function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
+    <form onSubmit={handleSubmit} className={styles.form} noValidate>
       <div>
         <input
           id='email'
@@ -85,8 +86,11 @@ export default function LoginForm() {
           aria-label='Email'
           disabled={isSubmitting}
         />
-
-        {errors.email ? <p>{errors.email}</p> : null}
+        <div className={styles.messageContainer}>
+          {errors.email ? (
+            <p className={styles.inputError}>{errors.email}</p>
+          ) : null}
+        </div>
       </div>
       <div>
         <input
@@ -99,16 +103,32 @@ export default function LoginForm() {
           aria-label='Password'
           disabled={isSubmitting}
         />
-        {errors.password ? <p>{errors.password}</p> : null}
+        <div className={styles.messageContainer}>
+          {errors.password ? (
+            <p className={styles.inputError}>{errors.password}</p>
+          ) : null}
+        </div>
       </div>
 
       <button aria-label='Submit button' disabled={isSubmitting}>
         Log in
       </button>
 
-      {message ? <p>{message}</p> : null}
+      <div className={styles.messageContainer}>
+        {message ? (
+          <p
+            className={
+              message.includes('successful')
+                ? styles.successMessage
+                : styles.errorMessage
+            }
+          >
+            {message}
+          </p>
+        ) : null}
+      </div>
 
-      <p>
+      <p className={styles.gotoSignup}>
         Not a user? <Link href='/signup'>Signup</Link>
       </p>
     </form>

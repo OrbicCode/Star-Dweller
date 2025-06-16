@@ -27,7 +27,7 @@
 }
 
 .messageContainer {
-  min-height: 1.125rem;
+  min-height: 1.2rem;
 }
 
 .inputError {
@@ -42,7 +42,7 @@
   background: var(--blue-grey);
   width: fit-content;
   padding: 1em 3em;
-  margin: 1em auto 0;
+  margin: 0 auto 0;
   border: none;
   border-radius: 25px;
   transition: background 0.3s ease-in-out;

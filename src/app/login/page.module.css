@@ -1,0 +1,5 @@
+.container {
+  text-align: center;
+  height: 100vh;
+  place-content: center;
+}
