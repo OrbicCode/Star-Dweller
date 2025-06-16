@@ -1,6 +1,0 @@
-.container {
-  text-align: center;
-  place-content: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, var(--black), var(--dark-blue));
-}
