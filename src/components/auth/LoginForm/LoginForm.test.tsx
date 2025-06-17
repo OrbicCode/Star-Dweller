@@ -14,11 +14,12 @@ jest.mock('next/navigation', () => ({
 }));
 
 describe('Login form', () => {
+  const mockOnSuccess = jest.fn();
   beforeEach(() => {
     jest.clearAllMocks();
   });
   it('renders the login form elements', () => {
-    render(<LoginForm />);
+    render(<LoginForm onSuccess={mockOnSuccess} />);
 
     expect(screen.getByLabelText('Email')).toBeInTheDocument();
     expect(screen.getByLabelText('Password')).toBeInTheDocument();
@@ -28,8 +29,7 @@ describe('Login form', () => {
   });
 
   it('displays client-side empty fields error', async () => {
-    render(<LoginForm />);
-
+    render(<LoginForm onSuccess={mockOnSuccess} />);
     fireEvent.click(screen.getByRole('button', { name: 'Submit button' }));
 
     await waitFor(() => {
@@ -39,8 +39,7 @@ describe('Login form', () => {
   });
 
   it('displays client-side invalid email error', async () => {
-    render(<LoginForm />);
-
+    render(<LoginForm onSuccess={mockOnSuccess} />);
     fireEvent.input(screen.getByLabelText('Email'), {
       target: { value: 'invalidexample.com' },
     });
@@ -55,8 +54,7 @@ describe('Login form', () => {
   });
 
   it('displays client-side password too short error', async () => {
-    render(<LoginForm />);
-
+    render(<LoginForm onSuccess={mockOnSuccess} />);
     fireEvent.input(screen.getByLabelText('Email'), {
       target: { value: 'test@example.com' },
     });
@@ -73,8 +71,7 @@ describe('Login form', () => {
   });
 
   it('disables inputs and button onSubmit', async () => {
-    render(<LoginForm />);
-
+    render(<LoginForm onSuccess={mockOnSuccess} />);
     fireEvent.input(screen.getByLabelText('Email'), {
       target: { value: 'test@example.com' },
     });
@@ -95,8 +92,7 @@ describe('Login form', () => {
   it('logs in user and redirects to dashboard', async () => {
     (login as jest.Mock).mockResolvedValue({ success: true });
 
-    render(<LoginForm />);
-
+    render(<LoginForm onSuccess={mockOnSuccess} />);
     fireEvent.input(screen.getByLabelText('Email'), {
       target: { value: 'test@example.com' },
     });
@@ -120,8 +116,7 @@ describe('Login form', () => {
       error: 'Invalid login credentials',
     });
 
-    render(<LoginForm />);
-
+    render(<LoginForm onSuccess={mockOnSuccess} />);
     fireEvent.input(screen.getByLabelText('Email'), {
       target: { value: 'test@example.com' },
     });

@@ -28,7 +28,7 @@
 }
 
 .messageContainer {
-  min-height: 1.125rem;
+  min-height: 1.2rem;
 }
 
 .inputError {
@@ -65,10 +65,6 @@
 
 .errorMessage {
   color: var(--red);
-}
-
-.gotoSignup {
-  margin: 0;
 }
 
 .gotoSignup a {

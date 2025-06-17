@@ -1,7 +1,6 @@
 'use client';
 
 import { signup } from '@/app/signup/actions';
-import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './SignupForm.module.css';
@@ -12,7 +11,11 @@ interface FormErrors {
   serverError: string | null;
 }
 
-export default function SignupForm() {
+interface SignupFormProps {
+  onSuccess: () => void;
+}
+
+export default function SignupForm({ onSuccess }: SignupFormProps) {
   const router = useRouter();
   const [errors, setErrors] = useState<FormErrors>({
     email: '',
@@ -62,6 +65,7 @@ export default function SignupForm() {
         setMessage(result.error);
       } else if (result && result.success) {
         setMessage('Sign up successful, redirecting.');
+        onSuccess();
         router.push('/dashboard');
       }
     } catch {
@@ -127,10 +131,6 @@ export default function SignupForm() {
           </p>
         ) : null}
       </div>
-
-      <p className={styles.gotoLogin}>
-        Already have an account? <Link href='/login'>Login</Link>
-      </p>
     </form>
   );
 }

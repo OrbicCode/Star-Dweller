@@ -14,11 +14,13 @@ jest.mock('next/navigation', () => ({
 }));
 
 describe('signup form', () => {
+  const mockOnSuccess = jest.fn();
+
   beforeEach(() => {
     jest.clearAllMocks();
   });
   it('renders the signup form elements', () => {
-    render(<SignupForm />);
+    render(<SignupForm onSuccess={mockOnSuccess} />);
 
     expect(screen.getByLabelText('Email')).toBeInTheDocument();
     expect(screen.getByLabelText('Password')).toBeInTheDocument();
@@ -28,7 +30,7 @@ describe('signup form', () => {
   });
 
   it('displays client-side empty fields error', async () => {
-    render(<SignupForm />);
+    render(<SignupForm onSuccess={mockOnSuccess} />);
 
     fireEvent.click(screen.getByRole('button', { name: 'Submit button' }));
 
@@ -39,7 +41,7 @@ describe('signup form', () => {
   });
 
   it('displays client-side invalid email error', async () => {
-    render(<SignupForm />);
+    render(<SignupForm onSuccess={mockOnSuccess} />);
 
     fireEvent.input(screen.getByLabelText('Email'), {
       target: { value: 'invalidexample.com' },
@@ -55,7 +57,7 @@ describe('signup form', () => {
   });
 
   it('displays client-side password too short error', async () => {
-    render(<SignupForm />);
+    render(<SignupForm onSuccess={mockOnSuccess} />);
 
     fireEvent.input(screen.getByLabelText('Email'), {
       target: { value: 'test@example.com' },
@@ -73,7 +75,7 @@ describe('signup form', () => {
   });
 
   it('disables inputs and button onSubmit', async () => {
-    render(<SignupForm />);
+    render(<SignupForm onSuccess={mockOnSuccess} />);
 
     fireEvent.input(screen.getByLabelText('Email'), {
       target: { value: 'test@example.com' },
@@ -95,7 +97,7 @@ describe('signup form', () => {
   it('signs up user and redirects to dashboard', async () => {
     (signup as jest.Mock).mockResolvedValue({ success: true });
 
-    render(<SignupForm />);
+    render(<SignupForm onSuccess={mockOnSuccess} />);
 
     fireEvent.input(screen.getByLabelText('Email'), {
       target: { value: 'test@example.com' },
@@ -120,7 +122,7 @@ describe('signup form', () => {
       error: 'User already registered',
     });
 
-    render(<SignupForm />);
+    render(<SignupForm onSuccess={mockOnSuccess} />);
 
     fireEvent.input(screen.getByLabelText('Email'), {
       target: { value: 'test@example.com' },
