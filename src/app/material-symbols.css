@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  src: url('/icons/MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].woff2')
+    format('woff');
+}
+
+.material-symbols-outlined {
+  color: var(--green);
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 30px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}

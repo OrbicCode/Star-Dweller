@@ -1,0 +1,25 @@
+.container {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.5em 1em;
+}
+
+.burger_menu {
+  background: none;
+  border: none;
+  margin-right: 0.1em;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.loginBtn {
+  color: inherit;
+  background: var(--green);
+  padding: 0.5em 1.25em;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}

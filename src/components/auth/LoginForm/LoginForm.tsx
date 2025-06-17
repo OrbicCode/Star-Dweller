@@ -1,65 +1,136 @@
-interface LoginFormProps {
+'use client';
+
+import { login } from '@/app/login/actions';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import styles from './LoginForm.module.css';
+
+interface FormErrors {
   email: string;
   password: string;
-  emailError: string | null;
-  passwordError: string | null;
-  isLoading: boolean;
-  message: string | null;
-  onEmailChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onPasswordChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  serverError: string | null;
 }
 
-export default function LoginForm({
-  email,
-  password,
-  emailError,
-  passwordError,
-  isLoading,
-  message,
-  onEmailChange,
-  onPasswordChange,
-  onSubmit,
-}: LoginFormProps) {
+interface LoginFormProps {
+  onSuccess: () => void;
+}
+
+export default function LoginForm({ onSuccess }: LoginFormProps) {
+  const router = useRouter();
+  const [errors, setErrors] = useState<FormErrors>({
+    email: '',
+    password: '',
+    serverError: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    setErrors({ email: '', password: '', serverError: null });
+
+    const formData = new FormData(e.currentTarget);
+    const email = (formData.get('email') as string).trim();
+    const password = (formData.get('password') as string).trim();
+
+    let hasError = false;
+    if (!email) {
+      setErrors(prev => ({ ...prev, email: 'Email required' }));
+      hasError = true;
+    } else if (!email.includes('@') || !email.includes('.')) {
+      setErrors(prev => ({ ...prev, email: 'Invalid email' }));
+      hasError = true;
+    }
+
+    if (!password) {
+      setErrors(prev => ({ ...prev, password: 'Password required' }));
+      hasError = true;
+    } else if (password.length < 6) {
+      setErrors(prev => ({
+        ...prev,
+        password: 'Password must be at least 6 characters',
+      }));
+      hasError = true;
+    }
+    if (hasError) {
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const result = await login(formData);
+      if (result && result.error) {
+        setMessage(result.error);
+      } else if (result && result.success) {
+        setMessage('Log in successful, redirecting.');
+        onSuccess();
+        router.push('/dashboard');
+      }
+    } catch {
+      setErrors(prev => ({
+        ...prev,
+        serverError: 'An unexpected error occured. Please try again.',
+      }));
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit} className={styles.form} noValidate>
       <div>
-        <label htmlFor='email'>Email:</label>
         <input
           id='email'
           name='email'
-          value={email}
+          type='email'
           placeholder='space@cosmic.com'
-          onChange={onEmailChange}
-          disabled={isLoading}
+          required
+          aria-label='Email'
+          disabled={isSubmitting}
         />
+        <div className={styles.messageContainer}>
+          {errors.email ? (
+            <p className={styles.inputError}>{errors.email}</p>
+          ) : null}
+        </div>
       </div>
-
-      {emailError ? <p>{emailError}</p> : null}
-
       <div>
-        <label htmlFor='password'>Password:</label>
         <input
-          type='password'
           id='password'
-          value={password}
-          placeholder='password'
-          onChange={onPasswordChange}
-          disabled={isLoading}
+          name='password'
+          type='password'
+          placeholder='Password'
+          required
+          minLength={6}
+          aria-label='Password'
+          disabled={isSubmitting}
         />
+        <div className={styles.messageContainer}>
+          {errors.password ? (
+            <p className={styles.inputError}>{errors.password}</p>
+          ) : null}
+        </div>
       </div>
 
-      {passwordError ? <p>{passwordError}</p> : null}
-
-      <button aria-label='Log in button' disabled={isLoading}>
+      <button aria-label='Submit button' disabled={isSubmitting}>
         Log in
       </button>
 
-      {message ? <p>{message}</p> : null}
-
-      <p>
-        Not a user? <a href='/auth/signup'>Sign up</a>
-      </p>
+      <div className={styles.messageContainer}>
+        {message ? (
+          <p
+            className={
+              message.includes('successful')
+                ? styles.successMessage
+                : styles.errorMessage
+            }
+          >
+            {message}
+          </p>
+        ) : null}
+      </div>
     </form>
   );
 }

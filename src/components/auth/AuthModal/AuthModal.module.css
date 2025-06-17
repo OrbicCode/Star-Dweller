@@ -1,0 +1,37 @@
+.modalContainer {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  bottom: 0;
+  height: fit-content;
+  min-height: 380px;
+  min-width: 320px;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid black;
+  border-radius: 25px;
+  background: var(--black);
+}
+
+.modal {
+  text-align: center;
+  position: relative;
+}
+
+.closeBtn {
+  position: absolute;
+  right: 20px;
+  top: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--green);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
