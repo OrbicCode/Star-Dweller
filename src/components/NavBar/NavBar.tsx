@@ -13,13 +13,13 @@ export default function NavBar({ isOpen, onClose }: NavBarProps) {
         <span className={`material-symbols-outlined`}>close</span>
       </button>
       <ul>
-        <li>
+        <li onClick={onClose}>
           <Link href='/'>Home</Link>
         </li>
-        <li>
+        <li onClick={onClose}>
           <Link href='/dashboard'>Dashboard</Link>
         </li>
-        <li>
+        <li onClick={onClose}>
           <Link href=''>Sign Out</Link>
         </li>
       </ul>

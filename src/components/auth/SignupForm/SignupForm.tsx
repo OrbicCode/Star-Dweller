@@ -4,6 +4,7 @@ import { signup } from '@/app/signup/actions';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './SignupForm.module.css';
+import { useAuth } from '../AuthProvider/AuthProvider';
 
 interface FormErrors {
   email: string;
@@ -17,6 +18,7 @@ interface SignupFormProps {
 
 export default function SignupForm({ onSuccess }: SignupFormProps) {
   const router = useRouter();
+  const { refreshUser } = useAuth();
   const [errors, setErrors] = useState<FormErrors>({
     email: '',
     password: '',
@@ -65,6 +67,8 @@ export default function SignupForm({ onSuccess }: SignupFormProps) {
         setMessage(result.error);
       } else if (result && result.success) {
         setMessage('Sign up successful, redirecting.');
+        await refreshUser();
+
         onSuccess();
         router.push('/dashboard');
       }
