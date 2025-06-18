@@ -1,4 +1,3 @@
-// e2e/auth/Login.spec.ts
 import { test, expect } from '@playwright/test';
 
 test.describe('Login Flow', () => {

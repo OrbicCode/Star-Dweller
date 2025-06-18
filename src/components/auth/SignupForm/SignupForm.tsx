@@ -68,7 +68,6 @@ export default function SignupForm({ onSuccess }: SignupFormProps) {
       } else if (result && result.success) {
         setMessage('Sign up successful, redirecting.');
         await refreshUser();
-
         onSuccess();
         router.push('/dashboard');
       }

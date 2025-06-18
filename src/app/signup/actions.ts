@@ -31,6 +31,12 @@ export async function signup(formData: FormData) {
     return { error: error.message };
   }
 
+  const { error: signInError } = await supabase.auth.signInWithPassword(data);
+
+  if (signInError) {
+    return { error: signInError.message };
+  }
+
   revalidatePath('/', 'layout');
   return { success: true };
 }
