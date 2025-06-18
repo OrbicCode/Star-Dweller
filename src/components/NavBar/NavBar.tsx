@@ -20,7 +20,11 @@ export default function NavBar({ isOpen, onClose }: NavBarProps) {
           <Link href='/dashboard'>Dashboard</Link>
         </li>
         <li onClick={onClose}>
-          <Link href=''>Sign Out</Link>
+          <form action='/auth/signout' method='POST'>
+            <button type='submit' onClick={onClose}>
+              Sign Out
+            </button>
+          </form>
         </li>
       </ul>
     </nav>
