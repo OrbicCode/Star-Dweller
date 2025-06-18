@@ -28,6 +28,7 @@ export default function Header({ user }: HeaderProps) {
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className={styles.burger_menu}
+            aria-label='Nav button'
           >
             <span className={`material-symbols-outlined burger-menu`}>
               menu
@@ -39,6 +40,7 @@ export default function Header({ user }: HeaderProps) {
         <button
           onClick={() => setIsAuthModalOpen(!isAuthModalOpen)}
           className={styles.loginBtn}
+          aria-label='Login'
         >
           Login
         </button>
