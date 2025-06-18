@@ -4,6 +4,7 @@ import { login } from '@/app/login/actions';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './LoginForm.module.css';
+import { useAuth } from '../AuthProvider/AuthProvider';
 
 interface FormErrors {
   email: string;
@@ -17,6 +18,7 @@ interface LoginFormProps {
 
 export default function LoginForm({ onSuccess }: LoginFormProps) {
   const router = useRouter();
+  const { refreshUser } = useAuth();
   const [errors, setErrors] = useState<FormErrors>({
     email: '',
     password: '',
@@ -65,6 +67,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
         setMessage(result.error);
       } else if (result && result.success) {
         setMessage('Log in successful, redirecting.');
+        await refreshUser();
         onSuccess();
         router.push('/dashboard');
       }

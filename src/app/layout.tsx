@@ -3,7 +3,7 @@ import { Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import './material-symbols.css';
 import Header from '@/components/Header/Header';
-import { getUser } from '@/utils/supabase/getUser';
+import { AuthProvider } from '@/components/auth/AuthProvider/AuthProvider';
 
 const spaceGrotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
@@ -20,12 +20,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = await getUser();
   return (
     <html lang='en'>
       <body className={`${spaceGrotesk.variable}`}>
-        <Header user={user} />
-        {children}
+        <AuthProvider>
+          <Header />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
