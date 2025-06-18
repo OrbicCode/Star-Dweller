@@ -5,13 +5,10 @@ import NavBar from '../NavBar/NavBar';
 import styles from './Header.module.css';
 import AuthModal from '../auth/AuthModal/AuthModal';
 import { useState } from 'react';
-import { User } from '@supabase/supabase-js';
+import { useAuth } from '../auth/AuthProvider/AuthProvider';
 
-interface HeaderProps {
-  user: User | null;
-}
-
-export default function Header({ user }: HeaderProps) {
+export default function Header() {
+  const { user } = useAuth();
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
@@ -34,7 +31,7 @@ export default function Header({ user }: HeaderProps) {
               menu
             </span>
           </button>
-          {isMenuOpen ? <NavBar /> : null}
+          <NavBar isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
         </div>
       ) : (
         <button

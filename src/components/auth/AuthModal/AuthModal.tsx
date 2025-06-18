@@ -17,8 +17,12 @@ export default function AuthModal({ onClose }: AuthModalProps) {
   return (
     <div className={styles.modalContainer}>
       <div className={styles.modal}>
-        <button onClick={onClose} className={styles.closeBtn}>
-          {<span className={`material-symbols-outlined`}>close</span>}
+        <button
+          onClick={onClose}
+          className={styles.closeBtn}
+          aria-label='close'
+        >
+          <span className={`material-symbols-outlined`}>close</span>
         </button>
         <h2>{isLogin ? 'Log in' : 'Sign up'}</h2>
         {isLogin ? (
@@ -31,6 +35,7 @@ export default function AuthModal({ onClose }: AuthModalProps) {
           <button
             className={styles.toggle}
             onClick={() => setIsLogin(!isLogin)}
+            aria-label='toggle'
           >
             {isLogin ? 'Sign up' : 'Log in'}
           </button>
