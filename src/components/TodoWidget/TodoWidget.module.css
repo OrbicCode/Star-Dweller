@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+
+.listContainer {
+  list-style: none;
+  padding: 0;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  border: 1px solid green;
+}
+
+.listItem input {
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+.checkbox {
+}
+
+.taskText {
+  flex: 1;
+  margin-top: 0.1em;
+}
+
+.deleteBtn {
+  font-size: 24px;
+  margin-left: auto;
+}
+
+.addTaskForm {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.addTaskForm input {
+  color: inherit;
+  flex: 1;
+  background: var(--blue-grey);
+  width: auto;
+  padding: 0.4em 1em;
+  border: none;
+  border-radius: 25px;
+}
+
+.addTaskForm button {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.addTaskForm button span {
+  margin: 0;
+  padding: 0;
+}

@@ -84,15 +84,27 @@ export default function TodoWidget() {
     editTask(id, task);
   };
 
+  const deleteTask = async (id: number) => {
+    const response = await fetch('/api/todos', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    });
+    if (response.ok) {
+      setTasks(tasks.filter(task => task.id !== id));
+    }
+  };
+
   return (
     <div className={styles.container}>
-      <ul>
+      <ul className={styles.listContainer}>
         {tasks.map((task: Task) => (
-          <li key={task.id}>
+          <li key={task.id} className={styles.listItem}>
             <input
               type='checkbox'
               checked={task.completed}
               onChange={() => toggleTask(task.id, task.completed)}
+              className={styles.checkbox}
             />
             <input
               type='text'
@@ -104,17 +116,26 @@ export default function TodoWidget() {
               }
               onKeyDown={e => handleKeyDown(e, task.id, task.task)}
               onBlur={() => handleBlur(task.id, task.task)}
+              className={styles.taskText}
             />
+            <span
+              className={`material-symbols-outlined ${styles.deleteBtn}`}
+              onClick={() => deleteTask(task.id)}
+            >
+              delete
+            </span>
           </li>
         ))}
       </ul>
-      <form onSubmit={addTask}>
+      <form className={styles.addTaskForm} onSubmit={addTask}>
         <input
           type='text'
           value={newTask}
           onChange={e => setNewTask(e.target.value)}
         />
-        <button>+</button>
+        <button>
+          <span className='material-symbols-outlined'>add_circle</span>{' '}
+        </button>
       </form>
     </div>
   );
