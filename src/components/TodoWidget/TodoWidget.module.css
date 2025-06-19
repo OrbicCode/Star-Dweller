@@ -6,6 +6,9 @@
 }
 
 .listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
   list-style: none;
   padding: 0;
 }
@@ -13,8 +16,7 @@
 .listItem {
   display: flex;
   align-items: center;
-  gap: 0.5em;
-  border: 1px solid green;
+  gap: 0.4em;
 }
 
 .listItem input {
@@ -24,6 +26,45 @@
 }
 
 .checkbox {
+  appearance: none;
+  width: 1.2em;
+  height: 1.2em;
+  border: 2px solid white;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.checkbox::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--green);
+  border-radius: 3px;
+  transition: all 0.2s ease-in-out;
+}
+
+.checkbox:checked {
+  border-color: var(--green);
+  background: var(--green);
+}
+
+.checkbox:checked::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0.35em;
+  top: 0.1em;
+  width: 0.3em;
+  height: 0.6em;
+  border: solid #fff;
+  border-width: 0 0.15em 0.15em 0;
+  transform: rotate(45deg);
 }
 
 .taskText {
@@ -34,6 +75,7 @@
 .deleteBtn {
   font-size: 24px;
   margin-left: auto;
+  cursor: pointer;
 }
 
 .addTaskForm {
