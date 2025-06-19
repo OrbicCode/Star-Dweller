@@ -11,7 +11,6 @@ export default function TodoWidget() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTask, setNewTask] = useState<string>('');
   const [editText, setEditText] = useState<{ [key: number]: string }>({});
-  console.log(editText);
   useEffect(() => {
     async function fetchTasks() {
       const response = await fetch('/api/todos');
@@ -32,15 +31,26 @@ export default function TodoWidget() {
     });
     const data = await response.json();
     if (!response.ok) throw new Error(data.error);
-    console.log(data);
 
     setTasks([...tasks, data]);
     setNewTask('');
   }
 
+  const toggleTask = async (id: number, completed: boolean) => {
+    const response = await fetch('/api/todos/toggle', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, completed }),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      setTasks(tasks.map(task => (task.id === id ? data : task)));
+    }
+  };
+
   const editTask = async (id: number, originalText: string) => {
     const newText = editText[id] || originalText;
-    if (newText === originalText) return; // No change, skip update
+    if (newText === originalText) return;
 
     const response = await fetch('/api/todos/edit', {
       method: 'PATCH',
@@ -79,6 +89,11 @@ export default function TodoWidget() {
       <ul>
         {tasks.map((task: Task) => (
           <li key={task.id}>
+            <input
+              type='checkbox'
+              checked={task.completed}
+              onChange={() => toggleTask(task.id, task.completed)}
+            />
             <input
               type='text'
               value={
