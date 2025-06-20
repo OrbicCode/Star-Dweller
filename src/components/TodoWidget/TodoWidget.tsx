@@ -116,7 +116,9 @@ export default function TodoWidget() {
               }
               onKeyDown={e => handleKeyDown(e, task.id, task.task)}
               onBlur={() => handleBlur(task.id, task.task)}
-              className={styles.taskText}
+              className={
+                task.completed ? styles.taskTextCompleted : styles.taskText
+              }
             />
             <span
               className={`material-symbols-outlined ${styles.deleteBtn}`}

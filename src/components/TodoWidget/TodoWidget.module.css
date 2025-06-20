@@ -19,61 +19,59 @@
   gap: 0.4em;
 }
 
-.listItem input {
-  color: inherit;
-  background: none;
-  border: none;
-}
-
 .checkbox {
   appearance: none;
-  width: 1.2em;
-  height: 1.2em;
-  border: 2px solid white;
+  width: 1.2rem;
+  height: 1.2rem;
   border-radius: 4px;
-  background: #fff;
   cursor: pointer;
   position: relative;
-  transition: border-color 0.2s;
 }
 
 .checkbox::after {
   content: '';
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 12px;
-  height: 12px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1rem;
+  height: 1rem;
   border: 2px solid var(--green);
-  border-radius: 3px;
-  transition: all 0.2s ease-in-out;
-}
-
-.checkbox:checked {
-  border-color: var(--green);
-  background: var(--green);
+  border-radius: 4px;
 }
 
 .checkbox:checked::after {
   content: '';
-  display: block;
   position: absolute;
-  left: 0.35em;
-  top: 0.1em;
-  width: 0.3em;
-  height: 0.6em;
-  border: solid #fff;
-  border-width: 0 0.15em 0.15em 0;
-  transform: rotate(45deg);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--green);
+  font-size: 0.8rem;
 }
 
 .taskText {
   flex: 1;
   margin-top: 0.1em;
+  color: inherit;
+  background: none;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.taskTextCompleted {
+  flex: 1;
+  margin-top: 0.1em;
+  color: var(--green);
+  background: none;
+  border: none;
+  opacity: 0.7;
+  text-decoration: line-through;
+  transition: all 0.3s ease-in-out;
 }
 
 .deleteBtn {
-  font-size: 24px;
+  font-size: 20px;
   margin-left: auto;
   cursor: pointer;
 }
