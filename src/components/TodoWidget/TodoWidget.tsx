@@ -5,6 +5,7 @@ interface Task {
   id: number;
   task: string;
   completed: boolean;
+  created_at: string;
 }
 
 export default function TodoWidget() {
