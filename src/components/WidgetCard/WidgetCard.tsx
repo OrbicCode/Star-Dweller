@@ -3,7 +3,7 @@ import styles from './WidgetCard.module.css';
 import { ReactNode } from 'react';
 
 interface WidgetCardProps {
-  title: string;
+  title: string | null;
   children: ReactNode;
 }
 

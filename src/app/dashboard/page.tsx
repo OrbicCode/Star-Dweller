@@ -9,7 +9,7 @@ export default function Dashboard() {
     <div className={styles.container}>
       <h1>Dashboard</h1>
       <div>
-        <WidgetCard title='To-Do'>
+        <WidgetCard title={null}>
           <TodoWidget />
         </WidgetCard>
       </div>

@@ -95,8 +95,32 @@ export default function TodoWidget() {
     }
   };
 
+  const completed = tasks.filter(task => task.completed).length;
+
   return (
     <div className={styles.container}>
+      <div className={styles.header}>
+        <h3>To-Do</h3>
+        <div>
+          <span className={completed > 0 ? styles.numberCompleted : undefined}>
+            {completed}
+          </span>
+          <span
+            className={
+              tasks.length === completed ? styles.numberCompleted : undefined
+            }
+          >
+            {' ' + '/' + ' '}
+          </span>
+          <span
+            className={
+              tasks.length === completed ? styles.numberCompleted : undefined
+            }
+          >
+            {tasks.length}
+          </span>
+        </div>
+      </div>
       <ul className={styles.listContainer}>
         {tasks.map((task: Task) => (
           <li key={task.id} className={styles.listItem}>
