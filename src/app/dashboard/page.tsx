@@ -5,6 +5,7 @@ import WidgetCard from '@/components/WidgetCard/WidgetCard';
 import styles from './page.module.css';
 import TodoWidget from '@/components/TodoWidget/TodoWidget';
 import WhoIsInSpace from '@/components/WhoIsInSpace/WhoIsInSpace';
+import Weather from '@/components/Weather/Weather';
 
 interface NasaApod {
   title: string;
@@ -31,6 +32,9 @@ export default function Dashboard() {
       <div>
         <WidgetCard title={null}>
           <TodoWidget />
+        </WidgetCard>
+        <WidgetCard title='Weather'>
+          <Weather />
         </WidgetCard>
         <WidgetCard title={null}>
           <WhoIsInSpace />

@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  height: 100%;
+  flex: 1;
+}
+
+.temp {
+  font-size: 2rem;
+}
+
+.icon {
+  justify-self: flex-end;
+  align-self: flex-end;
+}
+
+.iconWrapper {
+  display: flex;
+}
