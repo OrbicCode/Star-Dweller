@@ -1,0 +1,122 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.numberCompleted {
+  color: var(--green);
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  list-style: none;
+  max-height: 125px;
+  overflow-y: scroll;
+  padding: 0;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.checkbox {
+  appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--green);
+  border-radius: 4px;
+}
+
+.checkbox:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--green);
+  font-size: 0.8rem;
+}
+
+.taskText {
+  flex: 1;
+  margin-top: 0.1em;
+  color: inherit;
+  background: none;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.taskTextCompleted {
+  flex: 1;
+  margin-top: 0.1em;
+  color: var(--green);
+  background: none;
+  border: none;
+  opacity: 0.7;
+  text-decoration: line-through;
+  transition: all 0.3s ease-in-out;
+}
+
+.deleteBtn {
+  font-size: 20px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.addTaskForm {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.addTaskForm input {
+  color: inherit;
+  flex: 1;
+  background: var(--blue-grey);
+  width: auto;
+  padding: 0.4em 1em;
+  border: none;
+  border-radius: 25px;
+}
+
+.addTaskForm button {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.addTaskForm button span {
+  margin: 0;
+  padding: 0;
+}
