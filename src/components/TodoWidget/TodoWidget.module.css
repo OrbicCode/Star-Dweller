@@ -20,6 +20,8 @@
   flex-direction: column;
   gap: 0.2em;
   list-style: none;
+  max-height: 125px;
+  overflow-y: scroll;
   padding: 0;
 }
 

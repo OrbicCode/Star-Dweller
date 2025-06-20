@@ -27,5 +27,6 @@ body {
 
 h1 {
   font-size: 3rem;
-  padding-top: 1em;
+  padding-top: 5rem;
+  margin: 0;
 }
