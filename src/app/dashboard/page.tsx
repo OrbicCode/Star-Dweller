@@ -15,6 +15,7 @@ interface NasaApod {
 
 export default function Dashboard() {
   const [nasaPhoto, setNasaPhoto] = useState<NasaApod | null>(null);
+  const [weatherBG, setWeatherBG] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('/api/nasaPhoto')
@@ -30,13 +31,13 @@ export default function Dashboard() {
     <div className={styles.container} style={containerStyle}>
       <h1>Dashboard</h1>
       <div>
-        <WidgetCard title={null}>
+        <WidgetCard title={null} background={null}>
           <TodoWidget />
         </WidgetCard>
-        <WidgetCard title='Weather'>
-          <Weather />
+        <WidgetCard title='Weather' background={weatherBG}>
+          <Weather onIconLoad={setWeatherBG} />
         </WidgetCard>
-        <WidgetCard title={null}>
+        <WidgetCard title={null} background={'/rocket.png'}>
           <WhoIsInSpace />
         </WidgetCard>
       </div>
