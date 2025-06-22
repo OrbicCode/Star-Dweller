@@ -12,8 +12,11 @@ interface NasaApod {
 export const revalidate = 43200;
 
 export default async function Dashboard() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
   const nasaPhotoResponse = await fetch(`${baseUrl}/api/nasaPhoto`);
+  if (!nasaPhotoResponse.ok) {
+    throw new Error('Failed to fetch NASA photo');
+  }
   const nasaPhoto: NasaApod = await nasaPhotoResponse.json();
 
   const containerStyle = nasaPhoto
