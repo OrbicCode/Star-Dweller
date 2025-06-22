@@ -1,0 +1,12 @@
+.background {
+  background-size: cover;
+  background-position: center;
+  filter: blur(3px);
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 125%;
+  height: 125%;
+  opacity: 0.4;
+  z-index: 0;
+}

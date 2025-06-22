@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import styles from './WhoIsInSpace.module.css';
 
 interface Astronaut {
@@ -11,23 +10,20 @@ interface AstroData {
   number: number;
 }
 
-export default function WhoIsInSpace() {
-  const [astros, setAstros] = useState<AstroData | null>(null);
+export const revalidate = 86400;
 
-  useEffect(() => {
-    fetch('http://api.open-notify.org/astros.json')
-      .then(res => res.json())
-      .then(data => setAstros(data));
-  }, []);
+export default async function WhoIsInSpace() {
+  const response = await fetch('http://api.open-notify.org/astros.json');
+  const data: AstroData = await response.json();
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <h3>{"Who's in Space?"}</h3>
-        <span>{astros && astros.number}</span>
+        <span>{data && data.number}</span>
       </div>
-      {astros
-        ? astros.people.map(astro => (
+      {data
+        ? data.people.map(astro => (
             <div key={astro.name} className={styles.astrosContainer}>
               <p>{astro.name}</p>
               <p>{astro.craft}</p>

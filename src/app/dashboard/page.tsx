@@ -1,25 +1,24 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import WidgetCard from '@/components/WidgetCard/WidgetCard';
 import styles from './page.module.css';
-import TodoWidget from '@/components/TodoWidget/TodoWidget';
 import WhoIsInSpace from '@/components/WhoIsInSpace/WhoIsInSpace';
+import TodoWrapper from '@/components/wrappers/TodoWrapper/TodoWrapper';
+import WeatherWrapper from '@/components/wrappers/WeatherWrapper/WeatherWrapper';
 
 interface NasaApod {
   title: string;
   url: string;
   hdurl: string;
 }
+export const revalidate = 43200;
 
-export default function Dashboard() {
-  const [nasaPhoto, setNasaPhoto] = useState<NasaApod | null>(null);
-
-  useEffect(() => {
-    fetch('/api/nasaPhoto')
-      .then(res => res.json())
-      .then(data => setNasaPhoto(data));
-  }, []);
+export default async function Dashboard() {
+  const apiKey = process.env.NEXT_PUBLIC_NASA_API_KEY;
+  const nasaApiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
+  const nasaPhotoResponse = await fetch(nasaApiUrl);
+  if (!nasaPhotoResponse.ok) {
+    throw new Error('Failed to fetch NASA photo');
+  }
+  const nasaPhoto: NasaApod = await nasaPhotoResponse.json();
 
   const containerStyle = nasaPhoto
     ? { backgroundImage: `url(${nasaPhoto.url})` }
@@ -29,10 +28,13 @@ export default function Dashboard() {
     <div className={styles.container} style={containerStyle}>
       <h1>Dashboard</h1>
       <div>
-        <WidgetCard title={null}>
-          <TodoWidget />
+        <WidgetCard title={null} background={null}>
+          <TodoWrapper />
         </WidgetCard>
-        <WidgetCard title={null}>
+        <WidgetCard title='Weather' background={null}>
+          <WeatherWrapper />
+        </WidgetCard>
+        <WidgetCard title={null} background={'/rocket.png'}>
           <WhoIsInSpace />
         </WidgetCard>
       </div>

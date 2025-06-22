@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true, // Disable ESLint during next build
   },
+  images: {
+    domains: ['openweathermap.org'],
+  },
 };
 
 export default nextConfig;

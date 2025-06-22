@@ -3,7 +3,7 @@ import WidgetCard from './WidgetCard';
 
 it('should render title', () => {
   render(
-    <WidgetCard title='To-Do'>
+    <WidgetCard title='To-Do' background={null}>
       <></>
     </WidgetCard>
   );
