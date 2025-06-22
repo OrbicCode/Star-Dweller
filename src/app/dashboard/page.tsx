@@ -12,8 +12,9 @@ interface NasaApod {
 export const revalidate = 43200;
 
 export default async function Dashboard() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-  const nasaPhotoResponse = await fetch(`${baseUrl}/api/nasaPhoto`);
+  const apiKey = process.env.NEXT_PUBLIC_NASA_API_KEY;
+  const nasaApiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
+  const nasaPhotoResponse = await fetch(nasaApiUrl);
   if (!nasaPhotoResponse.ok) {
     throw new Error('Failed to fetch NASA photo');
   }
