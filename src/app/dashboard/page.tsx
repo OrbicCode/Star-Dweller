@@ -1,27 +1,20 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import WidgetCard from '@/components/WidgetCard/WidgetCard';
 import styles from './page.module.css';
-import TodoWidget from '@/components/TodoWidget/TodoWidget';
 import WhoIsInSpace from '@/components/WhoIsInSpace/WhoIsInSpace';
-import Weather from '@/components/Weather/Weather';
+import TodoWrapper from '@/components/wrappers/TodoWrapper/TodoWrapper';
+import WeatherWrapper from '@/components/wrappers/WeatherWrapper/WeatherWrapper';
 
 interface NasaApod {
   title: string;
   url: string;
   hdurl: string;
 }
+export const revalidate = 43200;
 
-export default function Dashboard() {
-  const [nasaPhoto, setNasaPhoto] = useState<NasaApod | null>(null);
-  const [weatherBG, setWeatherBG] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetch('/api/nasaPhoto')
-      .then(res => res.json())
-      .then(data => setNasaPhoto(data));
-  }, []);
+export default async function Dashboard() {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const nasaPhotoResponse = await fetch(`${baseUrl}/api/nasaPhoto`);
+  const nasaPhoto: NasaApod = await nasaPhotoResponse.json();
 
   const containerStyle = nasaPhoto
     ? { backgroundImage: `url(${nasaPhoto.url})` }
@@ -32,10 +25,10 @@ export default function Dashboard() {
       <h1>Dashboard</h1>
       <div>
         <WidgetCard title={null} background={null}>
-          <TodoWidget />
+          <TodoWrapper />
         </WidgetCard>
-        <WidgetCard title='Weather' background={weatherBG}>
-          <Weather onIconLoad={setWeatherBG} />
+        <WidgetCard title='Weather' background={null}>
+          <WeatherWrapper />
         </WidgetCard>
         <WidgetCard title={null} background={'/rocket.png'}>
           <WhoIsInSpace />
