@@ -3,6 +3,7 @@ import styles from './page.module.css';
 import WhoIsInSpace from '@/components/WhoIsInSpace/WhoIsInSpace';
 import TodoWrapper from '@/components/wrappers/TodoWrapper/TodoWrapper';
 import WeatherWrapper from '@/components/wrappers/WeatherWrapper/WeatherWrapper';
+import SpaceNews from '@/components/SpaceNews/SpaceNews';
 
 interface NasaApod {
   title: string;
@@ -33,6 +34,9 @@ export default async function Dashboard() {
         </WidgetCard>
         <WidgetCard title='Weather' background={null}>
           <WeatherWrapper />
+        </WidgetCard>
+        <WidgetCard title='Space News' background={null}>
+          <SpaceNews />
         </WidgetCard>
         <WidgetCard title={null} background={'/rocket.png'}>
           <WhoIsInSpace />

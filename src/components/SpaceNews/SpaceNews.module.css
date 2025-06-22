@@ -1,0 +1,20 @@
+.articleContainer {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  margin-block: 1em;
+  cursor: pointer;
+}
+
+.articleImg {
+  border-radius: 8px;
+}
+
+.articleTitle {
+  font-weight: 400;
+  font-size: 0.875rem;
+  text-overflow: ellipsis;
+  margin: 0;
+}

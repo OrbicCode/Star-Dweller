@@ -19,7 +19,8 @@
 
 - Who's in Space
 
-  - change to server component
+  - change to server component ✅
+  - change scroll behaviour
 
 - Weather
   - custom Icons
