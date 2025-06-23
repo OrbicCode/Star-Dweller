@@ -10,6 +10,8 @@
 
 .articleImg {
   border-radius: 8px;
+  min-width: 50px;
+  max-height: 50px;
 }
 
 .articleTitle {
