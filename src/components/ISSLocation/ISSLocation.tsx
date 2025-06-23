@@ -24,9 +24,15 @@ export default function ISSLocation() {
         );
         if (!geoResponse.ok) throw new Error('failed to fetch geo location');
         const geoData = await geoResponse.json();
+        console.log(geoData);
 
-        const country = geoData?.address.country;
-        const state = geoData?.address.state;
+        let country = 'Unknown';
+        let state = 'Unknown';
+
+        if (geoData && geoData.address) {
+          country = geoData.address.country ?? 'Unknown';
+          state = geoData.address.state ?? 'Unknown';
+        }
 
         setLocation({
           lat: lat,
