@@ -10,16 +10,21 @@
   padding-right: 1em;
 }
 
-.header span {
-  font-size: 1.25rem;
+.number {
+  font-size: 1.5rem;
+  font-weight: 800;
 }
 
 .astrosContainer {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.astros {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 1em;
-  overflow-y: scroll;
 }
 
 .astrosContainer p {

@@ -20,16 +20,18 @@ export default async function WhoIsInSpace() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h3>{"Who's in Space?"}</h3>
-        <span>{data && data.number}</span>
+        <span className={styles.number}>{data && data.number}</span>
       </div>
-      {data
-        ? data.people.map(astro => (
-            <div key={astro.name} className={styles.astrosContainer}>
-              <p>{astro.name}</p>
-              <p>{astro.craft}</p>
-            </div>
-          ))
-        : null}
+      <div className={styles.astrosContainer}>
+        {data
+          ? data.people.map(astro => (
+              <div key={astro.name} className={styles.astros}>
+                <p>{astro.name}</p>
+                <p>{astro.craft}</p>
+              </div>
+            ))
+          : null}
+      </div>
     </div>
   );
 }
