@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import './material-symbols.css';
+import 'leaflet/dist/leaflet.css';
 import Header from '@/components/Header/Header';
 import { AuthProvider } from '@/components/auth/AuthProvider/AuthProvider';
 
