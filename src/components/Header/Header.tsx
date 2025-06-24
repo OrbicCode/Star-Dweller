@@ -18,7 +18,7 @@ export default function Header() {
         <span className='material-symbols-outlined'>orbit</span>
       </Link>
 
-      {user && <p>Welcome Earthling</p>}
+      {user && <p className={styles.welcome}>Welcome Earthling</p>}
 
       {user ? (
         <div>

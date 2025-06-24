@@ -10,6 +10,10 @@
   z-index: 9999;
 }
 
+.welcome {
+  font-weight: 800;
+}
+
 .burger_menu {
   background: none;
   border: none;
@@ -25,4 +29,23 @@
   border: none;
   border-radius: 25px;
   cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0.5em 2em;
+    position: relative;
+  }
+
+  .welcome {
+    font-size: 1.125rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  .burger_menu {
+    display: none;
+  }
 }

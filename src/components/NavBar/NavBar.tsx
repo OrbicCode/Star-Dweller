@@ -19,12 +19,17 @@ export default function NavBar({ isOpen, onClose }: NavBarProps) {
         <li onClick={onClose}>
           <Link href='/dashboard'>Dashboard</Link>
         </li>
-        <li onClick={onClose}>
+        <li onClick={onClose} className={styles.signoutForm}>
           <form action='/auth/signout' method='POST'>
             <button type='submit' onClick={onClose}>
               Sign Out
             </button>
           </form>
+        </li>
+        <li>
+          <span className={`material-symbols-outlined ${styles.profile}`}>
+            account_circle
+          </span>
         </li>
       </ul>
     </nav>

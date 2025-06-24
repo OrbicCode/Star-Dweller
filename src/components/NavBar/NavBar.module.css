@@ -9,6 +9,10 @@
   transition: transform 0.3s ease-in-out;
 }
 
+.profile {
+  display: none;
+}
+
 .open {
   transform: translateX(0);
 }
@@ -42,4 +46,37 @@
 .nav li a {
   text-decoration: none;
   color: inherit;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    position: unset;
+    background: none;
+    transform: unset;
+  }
+
+  .profile {
+    display: inline;
+  }
+
+  .nav ul {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1em;
+    padding: unset;
+  }
+
+  .nav li {
+    font-size: 1rem;
+  }
+
+  .closeBtn {
+    display: none;
+  }
+
+  .signoutForm {
+    display: none;
+  }
 }
