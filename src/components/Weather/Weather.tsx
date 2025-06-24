@@ -39,16 +39,16 @@ export default function Weather({ onIconLoad }: WeatherProps) {
       : null;
 
   return (
-    <div className={`${styles.container}`}>
-      <div>
+    <div className={styles.container}>
+      <div className={styles.weatherInfo}>
         <p>
-          <span>{weather && weather.city}</span>
+          <span className={styles.city}>{weather && weather.city}</span>
           <span> | </span>
-          <span>
+          <span className={styles.day}>
             {new Date().toLocaleDateString('en-GB', { weekday: 'long' })}
           </span>
         </p>
-        <p>{weather && weather.condition}</p>
+        <p className={styles.condition}>{weather && weather.condition}</p>
         <p className={styles.temp}>
           {weather && weather.temperature.toFixed(0) + ' ºC'}
         </p>

@@ -4,7 +4,10 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  min-height: 60px;
   padding: 0.5em 1em;
+  background: linear-gradient(135deg, var(--black), var(--dark-blue));
+  z-index: 9999;
 }
 
 .burger_menu {

@@ -47,7 +47,7 @@ export default function ISSLocation() {
         center={location ? [location.lat, location.lon] : [51.505, -0.09]}
         zoom={0}
         scrollWheelZoom={false}
-        style={{ height: '100%', width: '100%' }} // Ensure the map fills the container
+        className={styles.mapContainer}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

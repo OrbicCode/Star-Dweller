@@ -22,11 +22,17 @@ body {
   font-size: 1rem;
   color: whitesmoke;
   background: linear-gradient(135deg, var(--black), var(--dark-blue));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   margin: 0;
 }
 
 h1 {
-  font-size: 3rem;
-  padding-top: 5rem;
+  margin: 0;
+}
+
+h3 {
+  font-size: 1.25rem;
   margin: 0;
 }

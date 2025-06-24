@@ -29,8 +29,8 @@ export default async function Dashboard() {
 
   return (
     <div className={styles.container} style={containerStyle}>
-      <h1>Dashboard</h1>
-      <div>
+      <h1 className={styles.visuallyHidden}>Dashboard</h1>
+      <div className={styles.widgetContainer}>
         <WidgetCard title={null} background={null}>
           <TodoWrapper />
         </WidgetCard>
