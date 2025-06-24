@@ -5,6 +5,7 @@ import TodoWrapper from '@/components/wrappers/TodoWrapper/TodoWrapper';
 import WeatherWrapper from '@/components/wrappers/WeatherWrapper/WeatherWrapper';
 import SpaceNews from '@/components/SpaceNews/SpaceNews';
 import SpaceXLaunchWrapper from '@/components/wrappers/SpaceXLaunchWrapper/SpaceXLaunchWrapper';
+import ISSLocationWrapper from '@/components/wrappers/ISSLocationWrapper/ISSLocationWrapper';
 
 interface NasaApod {
   title: string;
@@ -35,6 +36,9 @@ export default async function Dashboard() {
         </WidgetCard>
         <WidgetCard title='Weather' background={null}>
           <WeatherWrapper />
+        </WidgetCard>
+        <WidgetCard title='ISS Location' background={null}>
+          <ISSLocationWrapper />
         </WidgetCard>
         <WidgetCard title='Next SpaceX Launch' background={'/spacex.png'}>
           <SpaceXLaunchWrapper />
