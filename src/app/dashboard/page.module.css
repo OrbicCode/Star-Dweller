@@ -5,7 +5,7 @@
   background-color: rgba(0, 0, 0, 0.3);
   background-blend-mode: overlay;
   background-attachment: fixed;
-  padding: 100px 1em 0;
+  padding: 100px 1em 40px;
 }
 
 .visuallyHidden {
@@ -33,7 +33,7 @@
 
 @media (min-width: 768px) {
   .container {
-    padding: 100px 2em 0;
+    padding: 100px 2em 40px;
   }
 }
 

@@ -5,6 +5,7 @@
   align-items: center;
   width: 100%;
   min-height: 60px;
+  max-height: 60px;
   padding: 0.5em 1em;
   background: linear-gradient(135deg, var(--black), var(--dark-blue));
   z-index: 9999;
@@ -12,6 +13,7 @@
 
 .welcome {
   font-weight: 800;
+  margin: 0;
 }
 
 .burger_menu {
@@ -34,7 +36,7 @@
 @media (min-width: 768px) {
   .container {
     padding: 0.5em 2em;
-    position: relative;
+    position: fixed;
   }
 
   .welcome {
