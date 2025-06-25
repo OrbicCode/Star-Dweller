@@ -1,0 +1,37 @@
+.modalContainer {
+  position: absolute;
+  right: 0;
+  top: 60px;
+  bottom: 0;
+  height: fit-content;
+  min-width: 320px;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, var(--black), var(--dark-blue));
+}
+
+.modalContainer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.modalContainer li {
+  width: 100%;
+}
+
+.signoutForm {
+  cursor: pointer;
+}
+
+.signoutForm button {
+  font-size: 1.125rem;
+  color: inherit;
+  font-weight: 600;
+  text-align: center;
+  display: block;
+  background: none;
+  margin: 0 2em 0 auto;
+  border: none;
+  cursor: pointer;
+}

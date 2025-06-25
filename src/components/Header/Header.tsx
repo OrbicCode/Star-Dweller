@@ -6,11 +6,13 @@ import styles from './Header.module.css';
 import AuthModal from '../auth/AuthModal/AuthModal';
 import { useState } from 'react';
 import { useAuth } from '../auth/AuthProvider/AuthProvider';
+import ProfileMenuModal from '../auth/ProfileModal/ProfileMenuModal';
 
 export default function Header() {
   const { user } = useAuth();
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState<boolean>(false);
 
   return (
     <div className={styles.container}>
@@ -31,7 +33,11 @@ export default function Header() {
               menu
             </span>
           </button>
-          <NavBar isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+          <NavBar
+            isOpen={isMenuOpen}
+            onClose={() => setIsMenuOpen(false)}
+            onProfileClick={() => setIsProfileModalOpen(!isProfileModalOpen)}
+          />
         </div>
       ) : (
         <button
@@ -44,6 +50,10 @@ export default function Header() {
       )}
       {isAuthModalOpen && (
         <AuthModal onClose={() => setIsAuthModalOpen(false)} />
+      )}
+
+      {isProfileModalOpen && (
+        <ProfileMenuModal onProfileClick={() => setIsProfileModalOpen(false)} />
       )}
     </div>
   );

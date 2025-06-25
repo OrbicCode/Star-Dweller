@@ -37,14 +37,14 @@ export default async function Dashboard() {
         <WidgetCard title='Weather' background={null}>
           <WeatherWrapper />
         </WidgetCard>
-        <WidgetCard title='ISS Location' background={null}>
-          <ISSLocationWrapper />
+        <WidgetCard title='Space News' background={null}>
+          <SpaceNews />
         </WidgetCard>
         <WidgetCard title='Next SpaceX Launch' background={'/spacex.png'}>
           <SpaceXLaunchWrapper />
         </WidgetCard>
-        <WidgetCard title='Space News' background={null}>
-          <SpaceNews />
+        <WidgetCard title='ISS Location' background={null}>
+          <ISSLocationWrapper />
         </WidgetCard>
         <WidgetCard title={null} background={'/rocket.png'}>
           <WhoIsInSpace />

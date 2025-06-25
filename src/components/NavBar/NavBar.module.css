@@ -4,12 +4,12 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: var(--black);
+  background: linear-gradient(135deg, var(--black), var(--dark-blue));
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
 }
 
-.profile {
+.profileBtnLi {
   display: none;
 }
 
@@ -55,8 +55,15 @@
     transform: unset;
   }
 
-  .profile {
+  .profileBtnLi {
     display: inline;
+    cursor: pointer;
+  }
+
+  .profileBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
   }
 
   .nav ul {
