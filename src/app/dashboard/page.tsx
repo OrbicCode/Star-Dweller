@@ -12,6 +12,7 @@ interface NasaApod {
   url: string;
   hdurl: string;
 }
+export const dynamic = 'force-dynamic';
 export const revalidate = 43200;
 
 export default async function Dashboard() {
