@@ -1,3 +1,7 @@
+.weatherWrapper {
+  height: 100%;
+}
+
 .background {
   background-size: cover;
   background-position: center;

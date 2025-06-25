@@ -4,9 +4,13 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: var(--black);
+  background: linear-gradient(135deg, var(--black), var(--dark-blue));
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
+}
+
+.profileBtnLi {
+  display: none;
 }
 
 .open {
@@ -42,4 +46,44 @@
 .nav li a {
   text-decoration: none;
   color: inherit;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    position: unset;
+    background: none;
+    transform: unset;
+  }
+
+  .profileBtnLi {
+    display: inline;
+    cursor: pointer;
+  }
+
+  .profileBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .nav ul {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1em;
+    padding: unset;
+  }
+
+  .nav li {
+    font-size: 1rem;
+  }
+
+  .closeBtn {
+    display: none;
+  }
+
+  .signoutForm {
+    display: none;
+  }
 }

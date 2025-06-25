@@ -10,6 +10,7 @@
 - Header
 
   - AuthContext on page load I can see the login button (maybe store the session somewhere?) (Caching?)
+  - AuthModal CSS placement on screen for larger screen sizes
 
 - To-Do
 

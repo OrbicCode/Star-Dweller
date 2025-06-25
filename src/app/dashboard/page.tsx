@@ -12,6 +12,7 @@ interface NasaApod {
   url: string;
   hdurl: string;
 }
+export const dynamic = 'force-dynamic';
 export const revalidate = 43200;
 
 export default async function Dashboard() {
@@ -29,22 +30,22 @@ export default async function Dashboard() {
 
   return (
     <div className={styles.container} style={containerStyle}>
-      <h1>Dashboard</h1>
-      <div>
+      <h1 className={styles.visuallyHidden}>Dashboard</h1>
+      <div className={styles.widgetContainer}>
         <WidgetCard title={null} background={null}>
           <TodoWrapper />
         </WidgetCard>
         <WidgetCard title='Weather' background={null}>
           <WeatherWrapper />
         </WidgetCard>
-        <WidgetCard title='ISS Location' background={null}>
-          <ISSLocationWrapper />
+        <WidgetCard title='Space News' background={null}>
+          <SpaceNews />
         </WidgetCard>
         <WidgetCard title='Next SpaceX Launch' background={'/spacex.png'}>
           <SpaceXLaunchWrapper />
         </WidgetCard>
-        <WidgetCard title='Space News' background={null}>
-          <SpaceNews />
+        <WidgetCard title='ISS Location' background={null}>
+          <ISSLocationWrapper />
         </WidgetCard>
         <WidgetCard title={null} background={'/rocket.png'}>
           <WhoIsInSpace />

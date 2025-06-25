@@ -94,11 +94,14 @@ export default function SpaceXLaunch() {
 
   return (
     <div className={styles.container}>
-      <p>Date: {new Date(launch.t0).toLocaleString()}</p>
-      <p>Craft: {launch.vehicle.name}</p>
-      <p>Provider: {launch.provider.name}</p>
-      <p>Location: {launch.pad.location.name}</p>
-      <p>Countdown: {countdown}</p>
+      <div>
+        <p>{new Date(launch.t0).toLocaleString()}</p>
+        <p>{launch.vehicle.name}</p>
+        <p>{launch.pad.location.name}</p>
+      </div>
+      <div>
+        <p className={styles.countdown}>{countdown}</p>
+      </div>
     </div>
   );
 }

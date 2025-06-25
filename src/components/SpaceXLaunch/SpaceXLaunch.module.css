@@ -1,3 +1,8 @@
 .container {
   z-index: 1;
 }
+
+.countdown {
+  font-size: 2rem;
+  text-align: center;
+}

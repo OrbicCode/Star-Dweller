@@ -8,8 +8,15 @@ jest.mock('next/link', () =>
 describe('NavBar', () => {
   const isOpen = true;
   const onClose = jest.fn();
+  const onProfileClick = jest.fn();
   it('renders Home link', () => {
-    render(<NavBar onClose={onClose} isOpen={isOpen} />);
+    render(
+      <NavBar
+        onClose={onClose}
+        isOpen={isOpen}
+        onProfileClick={onProfileClick}
+      />
+    );
     expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
   });
 });

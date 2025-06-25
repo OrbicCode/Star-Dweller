@@ -4,9 +4,14 @@ import styles from './NavBar.module.css';
 interface NavBarProps {
   isOpen: boolean;
   onClose: () => void;
+  onProfileClick: () => void;
 }
 
-export default function NavBar({ isOpen, onClose }: NavBarProps) {
+export default function NavBar({
+  isOpen,
+  onClose,
+  onProfileClick,
+}: NavBarProps) {
   return (
     <nav className={`${styles.nav} ${isOpen ? styles.open : ''}`}>
       <button onClick={onClose} className={styles.closeBtn}>
@@ -19,12 +24,19 @@ export default function NavBar({ isOpen, onClose }: NavBarProps) {
         <li onClick={onClose}>
           <Link href='/dashboard'>Dashboard</Link>
         </li>
-        <li onClick={onClose}>
+        <li onClick={onClose} className={styles.signoutForm}>
           <form action='/auth/signout' method='POST'>
             <button type='submit' onClick={onClose}>
               Sign Out
             </button>
           </form>
+        </li>
+        <li className={styles.profileBtnLi}>
+          <button onClick={onProfileClick} className={styles.profileBtn}>
+            <span className={`material-symbols-outlined ${styles.profile}`}>
+              account_circle
+            </span>
+          </button>
         </li>
       </ul>
     </nav>

@@ -26,7 +26,7 @@ export default async function RootLayout({
       <body className={`${spaceGrotesk.variable}`}>
         <AuthProvider>
           <Header />
-          {children}
+          <main>{children}</main>
         </AuthProvider>
       </body>
     </html>
