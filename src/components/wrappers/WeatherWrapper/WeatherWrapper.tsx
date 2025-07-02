@@ -4,7 +4,12 @@ import Weather from '@/components/Weather/Weather';
 export const revalidate = 600;
 
 export default async function WeatherWrapper() {
-  const response = await fetch('/api/weather', { cache: 'no-store' });
+  const baseUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'http://localhost:3000';
+  const url = `${baseUrl}/api/weather`;
+
+  const response = await fetch(url, { cache: 'no-store' });
   if (!response.ok) throw new Error('Failed to fetch weather data');
   const weather = await response.json();
 
