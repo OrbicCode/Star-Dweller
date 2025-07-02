@@ -15,7 +15,7 @@
 
   - DESC order on reffresh bug ✅
   - max-height for scroll over flow ✅
-  - Client-side UI change to not rely on server feedback
+  - Client-side UI change to not rely on server feedback ✅
 
 - Who's in Space
 
