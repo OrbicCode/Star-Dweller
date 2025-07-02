@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+'use client';
+
+import { useState } from 'react';
 import styles from './TodoWidget.module.css';
 
 interface Task {
@@ -8,18 +10,14 @@ interface Task {
   created_at: string;
 }
 
-export default function TodoWidget() {
-  const [tasks, setTasks] = useState<Task[]>([]);
+interface TodoWidgetProps {
+  initialTasks: Task[];
+}
+
+export default function TodoWidget({ initialTasks }: TodoWidgetProps) {
+  const [tasks, setTasks] = useState<Task[]>(initialTasks || []);
   const [newTask, setNewTask] = useState<string>('');
   const [editText, setEditText] = useState<{ [key: number]: string }>({});
-  useEffect(() => {
-    async function fetchTasks() {
-      const response = await fetch('/api/todos');
-      const data = await response.json();
-      if (Array.isArray(data)) setTasks(data);
-    }
-    fetchTasks();
-  }, []);
 
   async function addTask(e: React.FormEvent) {
     e.preventDefault();
@@ -38,6 +36,12 @@ export default function TodoWidget() {
   }
 
   const toggleTask = async (id: number, completed: boolean) => {
+    setTasks(prev =>
+      prev.map(task =>
+        task.id === id ? { ...task, completed: !completed } : task
+      )
+    );
+
     const response = await fetch('/api/todos/toggle', {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
@@ -160,7 +164,7 @@ export default function TodoWidget() {
           value={newTask}
           onChange={e => setNewTask(e.target.value)}
         />
-        <button>
+        <button className={styles.addCircle}>
           <span className='material-symbols-outlined'>add_circle</span>{' '}
         </button>
       </form>

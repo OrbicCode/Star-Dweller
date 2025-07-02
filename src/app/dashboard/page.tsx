@@ -18,7 +18,9 @@ export const revalidate = 43200;
 export default async function Dashboard() {
   const apiKey = process.env.NEXT_PUBLIC_NASA_API_KEY;
   const nasaApiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
-  const nasaPhotoResponse = await fetch(nasaApiUrl);
+  const [nasaPhotoResponse] = await Promise.all([
+    fetch(nasaApiUrl, { next: { revalidate: 43200 } }),
+  ]);
   if (!nasaPhotoResponse.ok) {
     throw new Error('Failed to fetch NASA photo');
   }
