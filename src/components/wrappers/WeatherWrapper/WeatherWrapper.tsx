@@ -4,8 +4,11 @@ import Weather from '@/components/Weather/Weather';
 export const revalidate = 600;
 
 export default async function WeatherWrapper() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-  const response = await fetch(`${baseUrl}/api/weather`);
+  const isLocal = process.env.NODE_ENV === 'development';
+  const baseUrl = isLocal
+    ? process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+    : '';
+  const response = await fetch(`${baseUrl}/api/weather`, { cache: 'no-store' });
   const weather = await response.json();
 
   const iconUrl = weather.icon
