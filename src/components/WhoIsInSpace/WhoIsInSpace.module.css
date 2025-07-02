@@ -16,8 +16,9 @@
 }
 
 .astrosContainer {
-  overflow-y: scroll;
   height: 100%;
+  margin-bottom: 10px;
+  overflow-y: scroll;
 }
 
 .astros {
