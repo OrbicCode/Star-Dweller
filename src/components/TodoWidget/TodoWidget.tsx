@@ -36,6 +36,12 @@ export default function TodoWidget({ initialTasks }: TodoWidgetProps) {
   }
 
   const toggleTask = async (id: number, completed: boolean) => {
+    setTasks(prev =>
+      prev.map(task =>
+        task.id === id ? { ...task, completed: !completed } : task
+      )
+    );
+
     const response = await fetch('/api/todos/toggle', {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
