@@ -13,6 +13,7 @@ interface LaunchData {
 export default function SpaceXLaunch() {
   const [launch, setLaunch] = useState<LaunchData | null>(null);
   const [countdown, setCountdown] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
   useEffect(() => {
     const cached = localStorage.getItem('nextLaunch');
@@ -41,7 +42,10 @@ export default function SpaceXLaunch() {
             launch.provider.name === 'SpaceX' &&
             new Date(launch.t0).getTime() > Date.now()
         );
-        if (!spaceXLaunch) throw new Error('No upcoming SpaceX launch found');
+        if (!spaceXLaunch) {
+          setError('No upcoming SpaceX launch found');
+          throw new Error('No upcoming SpaceX launch found');
+        }
         setLaunch(spaceXLaunch);
         localStorage.setItem(
           'nextLaunch',
@@ -87,7 +91,7 @@ export default function SpaceXLaunch() {
   if (!launch) {
     return (
       <div className={styles.container}>
-        <p>Loading launch data...</p>
+        <p>{error ? error : 'Loading launch data...'}</p>
       </div>
     );
   }
