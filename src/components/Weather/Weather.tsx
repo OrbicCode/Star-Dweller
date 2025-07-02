@@ -1,10 +1,5 @@
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from './Weather.module.css';
-
-interface WeatherProps {
-  onIconLoad: (iconUrl: string | null) => void;
-}
 
 interface WeatherData {
   temperature: number;
@@ -13,31 +8,14 @@ interface WeatherData {
   icon: string;
 }
 
-export default function Weather({ onIconLoad }: WeatherProps) {
-  const [weather, setWeather] = useState<WeatherData | null>(null);
-  useEffect(() => {
-    const fetchWeather = async () => {
-      try {
-        const response = await fetch('/api/weather');
-        const data = await response.json();
-        setWeather(data);
-        const iconUrl = data.icon
-          ? `https://openweathermap.org/img/wn/${data.icon}@2x.png`
-          : null;
-        onIconLoad(iconUrl);
-      } catch (error) {
-        console.error('Error fetching weather:', error);
-      } finally {
-      }
-    };
-    fetchWeather();
-  }, []);
+interface WeatherProps {
+  weather: WeatherData;
+}
 
-  const iconUrl =
-    weather && weather.icon
-      ? `https://openweathermap.org/img/wn/${weather.icon}@2x.png`
-      : null;
-
+export default function Weather({ weather }: WeatherProps) {
+  const iconUrl = weather.icon
+    ? `https://openweathermap.org/img/wn/${weather.icon}@2x.png`
+    : null;
   return (
     <div className={styles.container}>
       <div className={styles.weatherInfo}>
