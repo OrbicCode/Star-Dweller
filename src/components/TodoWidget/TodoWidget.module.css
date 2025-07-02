@@ -120,3 +120,7 @@
   margin: 0;
   padding: 0;
 }
+
+.addCircle {
+  cursor: pointer;
+}

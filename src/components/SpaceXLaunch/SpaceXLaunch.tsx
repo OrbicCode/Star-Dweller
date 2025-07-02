@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import styles from './SpaceXLaunch.module.css';
 
@@ -10,56 +12,13 @@ interface LaunchData {
   t0: string;
 }
 
-export default function SpaceXLaunch() {
-  const [launch, setLaunch] = useState<LaunchData | null>(null);
+interface SpaceXLaunchProps {
+  launch: LaunchData | null;
+  error: string | undefined;
+}
+
+export default function SpaceXLaunch({ launch, error }: SpaceXLaunchProps) {
   const [countdown, setCountdown] = useState<string>('');
-  const [error, setError] = useState<string>('');
-
-  useEffect(() => {
-    const cached = localStorage.getItem('nextLaunch');
-
-    if (cached) {
-      const { launch: cachedLaunch, timestamp } = JSON.parse(cached);
-      const now = new Date().getTime();
-      const cacheAge = now - timestamp;
-      const launchTime = new Date(cachedLaunch.date_utc).getTime();
-
-      if (cacheAge < 24 * 60 * 60 * 1000 && launchTime > now) {
-        setLaunch(cachedLaunch);
-        return;
-      }
-    }
-
-    async function fetchLaunch() {
-      try {
-        const response = await fetch(
-          'https://fdo.rocketlaunch.live/json/launches/next/5'
-        );
-        if (!response.ok) throw new Error('Failed to fetch launch data');
-        const data = await response.json();
-        const spaceXLaunch = data.result.find(
-          (launch: LaunchData) =>
-            launch.provider.name === 'SpaceX' &&
-            new Date(launch.t0).getTime() > Date.now()
-        );
-        if (!spaceXLaunch) {
-          setError('No upcoming SpaceX launch found');
-          throw new Error('No upcoming SpaceX launch found');
-        }
-        setLaunch(spaceXLaunch);
-        localStorage.setItem(
-          'nextLaunch',
-          JSON.stringify({
-            launch: spaceXLaunch,
-            timestamp: new Date().getTime(),
-          })
-        );
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    fetchLaunch();
-  }, []);
 
   useEffect(() => {
     if (!launch?.t0) return;
@@ -88,10 +47,18 @@ export default function SpaceXLaunch() {
     return () => clearInterval(interval);
   }, [launch]);
 
+  if (error) {
+    return (
+      <div className={styles.container}>
+        <p>{error}</p>
+      </div>
+    );
+  }
+
   if (!launch) {
     return (
       <div className={styles.container}>
-        <p>{error ? error : 'Loading launch data...'}</p>
+        <p>Loading launch data...</p>
       </div>
     );
   }
