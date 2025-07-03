@@ -12,9 +12,13 @@ interface AstroData {
 
 export const revalidate = 86400;
 
-export default async function WhoIsInSpace() {
+export async function fetchAstroData(): Promise<AstroData> {
   const response = await fetch('http://api.open-notify.org/astros.json');
-  const data: AstroData = await response.json();
+  return response.json();
+}
+
+export default async function WhoIsInSpace() {
+  const data = await fetchAstroData();
 
   return (
     <div className={styles.container}>

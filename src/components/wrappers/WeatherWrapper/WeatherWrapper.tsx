@@ -11,7 +11,7 @@ export default async function WeatherWrapper() {
       : 'http://localhost:3000');
   const url = `${baseUrl}/api/weather`;
 
-  const response = await fetch(url, { cache: 'no-store' });
+  const response = await fetch(url);
   if (!response.ok) throw new Error('Failed to fetch weather data');
   const weather = await response.json();
 

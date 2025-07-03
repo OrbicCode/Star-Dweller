@@ -158,11 +158,16 @@ export default function TodoWidget({ initialTasks }: TodoWidgetProps) {
           </li>
         ))}
       </ul>
-      <form className={styles.addTaskForm} onSubmit={addTask}>
+      <form
+        className={styles.addTaskForm}
+        onSubmit={addTask}
+        aria-label='add task form'
+      >
         <input
           type='text'
           value={newTask}
           onChange={e => setNewTask(e.target.value)}
+          aria-label='task input'
         />
         <button className={styles.addCircle}>
           <span className='material-symbols-outlined'>add_circle</span>{' '}

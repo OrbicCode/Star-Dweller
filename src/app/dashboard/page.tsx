@@ -1,11 +1,11 @@
 import WidgetCard from '@/components/WidgetCard/WidgetCard';
-import styles from './page.module.css';
 import WhoIsInSpace from '@/components/WhoIsInSpace/WhoIsInSpace';
 import TodoWrapper from '@/components/wrappers/TodoWrapper/TodoWrapper';
 import WeatherWrapper from '@/components/wrappers/WeatherWrapper/WeatherWrapper';
 import SpaceNews from '@/components/SpaceNews/SpaceNews';
 import SpaceXLaunchWrapper from '@/components/wrappers/SpaceXLaunchWrapper/SpaceXLaunchWrapper';
 import ISSLocationWrapper from '@/components/wrappers/ISSLocationWrapper/ISSLocationWrapper';
+import styles from './page.module.css';
 
 interface NasaApod {
   title: string;
