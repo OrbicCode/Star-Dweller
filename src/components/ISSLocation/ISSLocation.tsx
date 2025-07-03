@@ -13,7 +13,12 @@ export default function ISSLocation() {
   useEffect(() => {
     async function fetchLocation() {
       try {
-        const response = await fetch('/api/iss_location');
+        const response = await fetch(
+          'http://api.open-notify.org/iss-now.json',
+          {
+            next: { revalidate: 60 },
+          }
+        );
         if (!response.ok) throw new Error('failed to fetch location');
         const data = await response.json();
 
