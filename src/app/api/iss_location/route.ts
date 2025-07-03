@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server';
 
-export const revalidate = 180;
-
 export async function GET() {
   try {
     const response = await fetch('https://api.open-notify.org/iss-now.json');
