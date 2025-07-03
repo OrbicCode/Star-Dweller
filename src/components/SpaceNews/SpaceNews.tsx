@@ -8,6 +8,8 @@ interface Article {
   url: string;
 }
 
+export const revalidate = 3600;
+
 export default async function SpaceNews() {
   const response = await fetch(
     'https://api.spaceflightnewsapi.net/v4/articles?limit=3'

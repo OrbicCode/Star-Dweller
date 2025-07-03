@@ -29,7 +29,7 @@ export default function ISSLocation() {
       }
     }
     fetchLocation();
-    const interval = setInterval(fetchLocation, 60000);
+    const interval = setInterval(fetchLocation, 180000);
     return () => clearInterval(interval);
   }, []);
 
