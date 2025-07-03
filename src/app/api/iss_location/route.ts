@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 
+export const revalidate = 180;
+
 export async function GET() {
   try {
-    const response = await fetch('https://api.open-notify.org/iss-now.json', {
-      next: { revalidate: 60 },
-    });
+    const response = await fetch('https://api.open-notify.org/iss-now.json');
     if (!response.ok) {
       return NextResponse.json(
         { error: 'Failed to fetch ISS location' },
