@@ -19,6 +19,11 @@ interface SpaceXLaunchProps {
 
 export default function SpaceXLaunch({ launch, error }: SpaceXLaunchProps) {
   const [countdown, setCountdown] = useState<string>('');
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     if (!launch?.t0) return;
@@ -63,10 +68,26 @@ export default function SpaceXLaunch({ launch, error }: SpaceXLaunchProps) {
     );
   }
 
+  // Format date consistently for both server and client
+  const formatDate = (dateString: string) => {
+    if (!isClient) {
+      return 'Loading...';
+    }
+    return new Date(dateString).toLocaleString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+    });
+  };
+
   return (
     <div className={styles.container}>
       <div>
-        <p>{new Date(launch.t0).toLocaleString()}</p>
+        <p>{formatDate(launch.t0)}</p>
         <p>{launch.vehicle.name}</p>
         <p>{launch.pad.location.name}</p>
       </div>
