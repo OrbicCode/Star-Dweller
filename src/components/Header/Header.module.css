@@ -17,6 +17,20 @@
   color: inherit;
   display: flex;
   align-items: center;
+  gap: 0.75em;
+}
+
+.logoText {
+  display: none;
+  color: var(--green);
+}
+
+.logoText {
+  opacity: 0.7;
+}
+
+.logoCapitals {
+  color: var(--green);
 }
 
 .welcome {
@@ -41,10 +55,18 @@
   cursor: pointer;
 }
 
+.loginBtn:hover {
+  opacity: 0.7;
+}
+
 @media (min-width: 768px) {
   .container {
     padding: 0.5em 2em;
     position: fixed;
+  }
+
+  .logoText {
+    display: inline;
   }
 
   .welcome {

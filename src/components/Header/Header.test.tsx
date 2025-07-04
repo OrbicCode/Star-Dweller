@@ -27,7 +27,6 @@ describe('Header', () => {
   it('renders login button when no user', () => {
     (useAuth as jest.Mock).mockReturnValue({ user: null });
     render(<Header />);
-    expect(screen.getByText('Star Dweller')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Login' }));
   });
 

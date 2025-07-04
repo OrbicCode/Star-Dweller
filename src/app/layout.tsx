@@ -23,6 +23,15 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang='en'>
+      <head>
+        <link
+          rel='preload'
+          href='/icons/MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].woff2'
+          as='font'
+          type='font/woff2'
+          crossOrigin='anonymous'
+        />
+      </head>
       <body className={`${spaceGrotesk.variable}`}>
         <AuthProvider>
           <Header />

@@ -16,6 +16,7 @@
   background: rgba(58, 80, 107, 0.3);
   display: block;
   width: 100%;
+  max-width: 400px;
   padding: 1em 1.5em;
   margin: 0 auto 0.2em;
   border: none;

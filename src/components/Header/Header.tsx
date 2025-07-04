@@ -18,8 +18,11 @@ export default function Header() {
   return (
     <div className={styles.container}>
       <Link href={user ? '/dashboard' : '/'} className={styles.logoContainer}>
-        <Image src={'/logo-1.png'} width={75} height={75} alt='logo' />
-        <span className={styles.logoText}>Star Dweller</span>
+        <Image src={'/logo-1.png'} width={35} height={35} alt='logo' />
+        <span className={styles.logoText}>
+          <span className={styles.logoCapitals}>S</span>tar
+          <span className={styles.logoCapitals}>D</span>weller
+        </span>
       </Link>
 
       {user && <p className={styles.welcome}>Welcome Earthling</p>}

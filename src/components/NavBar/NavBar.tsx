@@ -18,10 +18,10 @@ export default function NavBar({
         <span className={`material-symbols-outlined`}>close</span>
       </button>
       <ul>
-        <li onClick={onClose}>
+        <li onClick={onClose} className={styles.links}>
           <Link href='/'>Home</Link>
         </li>
-        <li onClick={onClose}>
+        <li onClick={onClose} className={styles.links}>
           <Link href='/dashboard'>Dashboard</Link>
         </li>
         <li onClick={onClose} className={styles.signoutForm}>
