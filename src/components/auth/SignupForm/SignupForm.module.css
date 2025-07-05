@@ -46,7 +46,6 @@
   margin: 0 auto;
   border: none;
   border-radius: 25px;
-  transition: background 0.3s ease-in-out;
   cursor: pointer;
 }
 

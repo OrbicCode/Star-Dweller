@@ -41,18 +41,17 @@
 .form button {
   font-family: inherit;
   color: inherit;
-  background: var(--blue-grey);
+  background: var(--green);
   width: fit-content;
   padding: 1em 3em;
   margin: 0 auto;
   border: none;
   border-radius: 25px;
-  transition: background 0.3s ease-in-out;
 }
 
 .form button:hover,
 .form button:hover {
-  background: var(--green);
+  opacity: 0.7;
 }
 
 .successMessage,
