@@ -1,10 +1,7 @@
 - General
 
-  - font-family decision
-  - add 'Beaming down...' Loading state while API's load in
+  - add 'Beaming down...' Loading state while page is redirected to dashboard
   - Check to change all widget API calls from client to server (photo as well)
-  - material icon text before icon appears bug
-  - see if I can use caching for better performance?
 
 - Auth Modal
 
