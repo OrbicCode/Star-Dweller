@@ -11,9 +11,9 @@ export default function ProfileMenuModal({
     <div className={styles.modalContainer}>
       <nav>
         <ul>
-          <li onClick={onProfileClick} className={styles.signoutForm}>
+          <li className={styles.signoutForm}>
             <form action='/auth/signout' method='POST'>
-              <button type='submit' onClick={onProfileClick}>
+              <button type='submit' onClick={() => onProfileClick()}>
                 Sign Out
               </button>
             </form>

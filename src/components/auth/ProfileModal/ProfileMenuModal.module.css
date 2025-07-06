@@ -25,6 +25,7 @@
 }
 
 .signoutForm button {
+  font-family: inherit;
   font-size: 1.125rem;
   color: inherit;
   font-weight: 600;
@@ -34,4 +35,8 @@
   margin: 0 2em 0 auto;
   border: none;
   cursor: pointer;
+}
+
+.signoutForm button:hover {
+  color: var(--green);
 }
