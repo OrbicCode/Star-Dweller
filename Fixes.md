@@ -6,6 +6,10 @@
   - material icon text before icon appears bug
   - see if I can use caching for better performance?
 
+- Auth Modal
+
+  - save the input info between signup and login switches
+
 - Header
 
   - AuthContext on page load I can see the login button (maybe store the session somewhere?) (Caching?)
@@ -16,6 +20,7 @@
   - DESC order on reffresh bug ✅
   - max-height for scroll over flow ✅
   - Client-side UI change to not rely on server feedback ✅
+  - fix the double response first the client side change when completed then the serverside change. (happens when completed is clicked multiple times in quick succession)
 
 - Who's in Space
 
