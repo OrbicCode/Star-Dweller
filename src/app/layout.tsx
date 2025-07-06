@@ -16,7 +16,8 @@ export const metadata: Metadata = {
   description:
     'A space-themed personal dashboard app to explore the cosmos while boosting productivity. Features widgets for tasks, space news, SpaceX launches, and more.',
   icons: {
-    icon: '/favicon.ico',
+    icon: [{ url: '/favicon.ico', sizes: '32x32', type: 'image/x-icon' }],
+    shortcut: '/favicon.ico',
   },
   viewport: {
     width: 'device-width',
