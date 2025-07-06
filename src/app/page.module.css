@@ -3,3 +3,37 @@
   height: 100vh;
   padding-top: 60px;
 }
+
+.hero {
+  padding: 3em 1em;
+}
+
+.hero h1 {
+  color: var(--green);
+}
+
+.hero h2 {
+  font-size: 1.75rem;
+  color: var(--green);
+}
+
+.hero p {
+  font-size: 1.125rem;
+}
+
+.imageSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 2em 0;
+  background: var(--dark-blue);
+}
+
+.dashboardImageContainer {
+  position: relative;
+  width: 95%;
+  aspect-ratio: 18/9;
+  margin: 0 auto;
+}

@@ -4,15 +4,24 @@ import styles from './page.module.css';
 export default function Home() {
   return (
     <div className={styles.container}>
-      <h1>StarDweller</h1>
-      <div>
+      <div className={styles.hero}>
+        {/* <h1>StarDweller</h1> */}
         <h2>Keep Your Eyes on the Skies</h2>
         <p>
           Manage your tasks, keep up with space news, see when the next SpaceX
           launch is and more
         </p>
       </div>
-      <Image src={'/dashboard.webp'} width={575} height={300} alt='logo' />
+      <div className={styles.imageSection}>
+        <div className={styles.dashboardImageContainer}>
+          <Image
+            src={'/dashboard-1.webp'}
+            fill
+            style={{ objectFit: 'cover' }}
+            alt='logo'
+          />
+        </div>
+      </div>
       <div>
         <div>
           <span className={`material-symbols-outlined burger-menu`}>menu</span>
