@@ -1,6 +1,6 @@
 # Star Dweller 🚀
 
-Star Dweller is a space-themed personal dashboard app designed to explore the cosmos while boosting productivity. Built with a mobile-first approach, it features widgets such as a To-Do list, Space News, SpaceX launch dates, all styled with a sleek night-sky palette. This project challenges me to continue learning new technologies (Jest, TypeScript) on the fly while leveraging my existing skills, aiming to create a standout portfolio piece for my developer journey.
+Star Dweller is a space-themed personal dashboard app designed to keep you productive while keeping up with everything cosmic. Built with a mobile-first approach, it features widgets such as a To-Do list, Space News, SpaceX launch dates, all styled with a sleek night-sky palette. This project challenges me to continue learning new technologies (Jest, TypeScript) on the fly while leveraging my existing skills, aiming to create a standout portfolio piece for my developer journey.
 
 ## Table of Contents
 
