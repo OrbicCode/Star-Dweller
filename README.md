@@ -71,7 +71,7 @@ Cosmic Dashboard is a space-themed personal dashboard app designed to explore th
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/orbiccode/star-dweller.git
+   git clone https://github.com/OrbicCode/Star-Dweller.git
    cd cosmic-dashboard
    ```
 
