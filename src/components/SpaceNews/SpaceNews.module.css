@@ -19,5 +19,7 @@
   font-weight: 400;
   font-size: 0.875rem;
   text-overflow: ellipsis;
+  max-height: 4em;
+  overflow: hidden;
   margin: 0;
 }
