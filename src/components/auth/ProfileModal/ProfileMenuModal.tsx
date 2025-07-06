@@ -13,7 +13,7 @@ export default function ProfileMenuModal({
         <ul>
           <li className={styles.signoutForm}>
             <form action='/auth/signout' method='POST'>
-              <button type='submit' onClick={() => onProfileClick()}>
+              <button type='submit' onClick={() => onProfileClick}>
                 Sign Out
               </button>
             </form>
