@@ -11,11 +11,17 @@
   border: 1px solid black;
   border-radius: 25px;
   background: var(--black);
+  transition: transform 0.3s ease;
 }
 
 .modal {
   text-align: center;
   position: relative;
+}
+
+.modal input:not(:focus) {
+  transform: scale(1);
+  transition: transform 0.3s ease;
 }
 
 .closeBtn {
