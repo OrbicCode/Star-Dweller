@@ -5,7 +5,7 @@
 }
 
 .hero {
-  padding: 3em 1em;
+  padding: 4em 1em;
 }
 
 .hero h1 {
@@ -13,12 +13,31 @@
 }
 
 .hero h2 {
-  font-size: 1.75rem;
+  font-size: 2.25rem;
   color: var(--green);
+  margin-top: 0;
 }
 
 .hero p {
+  font-size: 1.5rem;
+  margin: 1em auto;
+  max-width: 800px;
+}
+
+.getStartedBtn {
   font-size: 1.125rem;
+  font-family: inherit;
+  color: inherit;
+  background: var(--green);
+  padding: 1em 2.5em;
+  margin-top: 1em;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.getStartedBtn:hover {
+  opacity: 0.7;
 }
 
 .imageSection {
@@ -36,4 +55,59 @@
   width: 95%;
   aspect-ratio: 18/9;
   margin: 0 auto;
+}
+
+.featuresContainer {
+  display: grid;
+  gap: 2em;
+  padding: 2em 1em;
+}
+
+.featureSection {
+  padding: 1em;
+}
+
+.featureSection h2 {
+  font-size: 2.25rem;
+  color: var(--green);
+  margin-bottom: 0;
+}
+
+.featureInfo {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+@media (min-width: 650px) {
+  .hero {
+    padding: 5em 2em;
+  }
+
+  .imageSection {
+    padding: 3em 2em;
+  }
+
+  .featuresContainer {
+    grid-template-columns: 1fr 1fr;
+    padding: 3em 2em;
+  }
+}
+
+@media (min-width: 1028px) {
+  .hero {
+    padding: 7em 3em;
+  }
+
+  .imageSection {
+    padding: 5em 3em;
+  }
+
+  .featureSection h2 {
+    margin-top: 2em;
+  }
+
+  .featuresContainer {
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 4em 3em;
+  }
 }
