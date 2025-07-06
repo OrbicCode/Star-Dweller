@@ -17,7 +17,7 @@ export default function Home() {
           launch is and more
         </p>
         <button
-          onClick={() => setIsAuthModalOpen(true)}
+          onClick={() => setIsAuthModalOpen(!isAuthModalOpen)}
           className={styles.getStartedBtn}
         >
           Get Started
