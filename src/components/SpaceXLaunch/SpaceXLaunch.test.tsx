@@ -15,7 +15,7 @@ const launch = {
 describe('SpaceXLaunch', () => {
   it('renders loading state', () => {
     render(<SpaceXLaunch launch={null} error={undefined} />);
-    expect(screen.getByText('Loading launch data...')).toBeInTheDocument();
+    expect(screen.getByText('Beaming down launch data...')).toBeInTheDocument();
   });
 
   it('renders error state', () => {

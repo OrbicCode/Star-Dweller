@@ -12,20 +12,28 @@ const mockAstroData = {
 
 describe('fetchAstroData', () => {
   beforeEach(() => {
-    (global.fetch as jest.Mock).mockResolvedValue({
-      json: async () => mockAstroData,
-    });
-  });
-
-  afterEach(() => {
-    jest.resetAllMocks();
+    jest.clearAllMocks();
   });
 
   it('fetches astronaut data', async () => {
+    (global.fetch as jest.Mock).mockResolvedValueOnce({
+      ok: true,
+      json: async () => mockAstroData,
+    });
+
     const data = await fetchAstroData();
     expect(data).toEqual(mockAstroData);
     expect(global.fetch).toHaveBeenCalledWith(
       'http://api.open-notify.org/astros.json'
     );
+  });
+
+  it('returns null on fetch error', async () => {
+    (global.fetch as jest.Mock).mockRejectedValueOnce(
+      new Error('Network error')
+    );
+
+    const data = await fetchAstroData();
+    expect(data).toBeNull();
   });
 });
