@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './LoginForm.module.css';
 import { useAuth } from '../AuthProvider/AuthProvider';
+import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner';
 
 interface FormErrors {
   email: string;
@@ -25,6 +26,8 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
     serverError: '',
   });
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [isRedirecting, setIsRedirecting] = useState<boolean>(false);
+
   const [message, setMessage] = useState<string>('');
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -67,9 +70,12 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
         setMessage(result.error);
       } else if (result && result.success) {
         setMessage('Log in successful, redirecting.');
+        setIsRedirecting(true);
         await refreshUser();
-        onSuccess();
         router.push('/dashboard');
+        setTimeout(() => {
+          onSuccess();
+        }, 2000);
       }
     } catch {
       setErrors(prev => ({
@@ -79,6 +85,10 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
     } finally {
       setIsSubmitting(false);
     }
+  }
+
+  if (isRedirecting) {
+    return <LoadingSpinner />;
   }
 
   return (
