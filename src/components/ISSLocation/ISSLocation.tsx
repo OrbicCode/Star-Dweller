@@ -9,6 +9,7 @@ export default function ISSLocation() {
     lat: number;
     lon: number;
   } | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchLocation() {
@@ -24,8 +25,10 @@ export default function ISSLocation() {
           lat: lat,
           lon: lon,
         });
+        setError(null);
       } catch (error) {
         console.error('Error:', error);
+        setError('Unable to load ISS location');
       }
     }
     fetchLocation();
@@ -40,6 +43,15 @@ export default function ISSLocation() {
     }, [lat, lon, map]);
     return null;
   };
+
+  if (error) {
+    return (
+      <div className={styles.container}>
+        <p>{error}</p>
+        <p>Please try again later</p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>

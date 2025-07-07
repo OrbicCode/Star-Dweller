@@ -15,16 +15,24 @@ interface NasaApod {
 export const dynamic = 'force-dynamic';
 export const revalidate = 43200;
 
-export default async function Dashboard() {
-  const apiKey = process.env.NEXT_PUBLIC_NASA_API_KEY;
-  const nasaApiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
-  const [nasaPhotoResponse] = await Promise.all([
-    fetch(nasaApiUrl, { next: { revalidate: 43200 } }),
-  ]);
-  if (!nasaPhotoResponse.ok) {
-    throw new Error('Failed to fetch NASA photo');
+async function fetchNasaPhoto(): Promise<NasaApod | null> {
+  try {
+    const apiKey = process.env.NEXT_PUBLIC_NASA_API_KEY;
+    const nasaApiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
+
+    const response = await fetch(nasaApiUrl, { next: { revalidate: 43200 } });
+    if (!response.ok) {
+      throw new Error('Failed to fetch NASA photo');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching NASA photo:', error);
+    return null;
   }
-  const nasaPhoto: NasaApod = await nasaPhotoResponse.json();
+}
+
+export default async function Dashboard() {
+  const nasaPhoto = await fetchNasaPhoto();
 
   const containerStyle = nasaPhoto
     ? { backgroundImage: `url(${nasaPhoto.url})` }

@@ -7,20 +7,24 @@ import { createClient } from '@/utils/supabase/client';
 type AuthContextType = {
   user: User | null;
   refreshUser: () => Promise<void>;
+  isLoading: boolean;
 };
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
   refreshUser: async () => {},
+  isLoading: true,
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchUser = async () => {
     const supabase = createClient();
     const { data, error } = await supabase.auth.getUser();
     setUser(data?.user || null);
+    setIsLoading(false);
     if (error && error.message !== 'Auth session missing!') {
       console.error('Error fetching user:', error.message);
     }
@@ -33,6 +37,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (event, session) => {
         setUser(session?.user || null);
+        setIsLoading(false);
       }
     );
 
@@ -42,7 +47,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, refreshUser: fetchUser }}>
+    <AuthContext.Provider value={{ user, refreshUser: fetchUser, isLoading }}>
       {children}
     </AuthContext.Provider>
   );

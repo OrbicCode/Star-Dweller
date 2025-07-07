@@ -1,16 +1,32 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import AuthModal from '@/components/auth/AuthModal/AuthModal';
+import LoadingSpinner from '@/components/LoadingSpinner/LoadingSpinner';
+import { useAuth } from '@/components/auth/AuthProvider/AuthProvider';
 import styles from './page.module.css';
 
 export default function Home() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
+  const [hasRedirected, setHasRedirected] = useState<boolean>(false);
+  const { user, isLoading } = useAuth();
+  const router = useRouter();
 
+  useEffect(() => {
+    if (user && !isLoading && !hasRedirected) {
+      setHasRedirected(true);
+      router.push('/dashboard');
+    }
+  }, [user, isLoading, hasRedirected, router]);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
   return (
     <div className={styles.container}>
       <div className={styles.hero}>
-        {/* <h1>StarDweller</h1> */}
+        <h1 className={styles.visuallyHidden}>StarDweller</h1>
         <h2>Keep Your Eyes on the Skies</h2>
         <p>
           Manage your tasks, keep up with space news, see when the next SpaceX

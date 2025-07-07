@@ -63,7 +63,7 @@ export default function SpaceXLaunch({ launch, error }: SpaceXLaunchProps) {
   if (!launch) {
     return (
       <div className={styles.container}>
-        <p>Loading launch data...</p>
+        <p>Beaming down launch data...</p>
       </div>
     );
   }

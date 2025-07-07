@@ -38,7 +38,6 @@ export default async function WeatherWrapper() {
     );
   } catch (error) {
     console.error('WeatherWrapper error:', error);
-    // Return fallback UI instead of crashing
     return (
       <div className={styles.weatherWrapper}>
         <Weather
