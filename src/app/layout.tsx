@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 import { Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import './material-symbols.css';
@@ -39,6 +40,7 @@ export default async function RootLayout({
         <AuthProvider>
           <Header />
           <main>{children}</main>
+          <Analytics />
         </AuthProvider>
       </body>
     </html>
