@@ -102,6 +102,10 @@
     grid-template-columns: 1fr 1fr;
     padding: 3em 2em;
   }
+
+  .lastFeature {
+    grid-column: span 2;
+  }
 }
 
 @media (min-width: 1028px) {
@@ -120,5 +124,9 @@
   .featuresContainer {
     grid-template-columns: 1fr 1fr 1fr;
     padding: 4em 3em;
+  }
+
+  .lastFeature {
+    grid-column: 2;
   }
 }

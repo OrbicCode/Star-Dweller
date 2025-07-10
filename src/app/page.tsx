@@ -98,6 +98,17 @@ export default function Home() {
               London, will have local location functionality coming soon.
             </p>
           </div>
+
+          <div className={`${styles.feature} ${styles.lastFeature}`}>
+            <span className={`material-symbols-outlined burger-menu`}>
+              wallpaper
+            </span>
+            <h3>NASA Photo of the Day</h3>
+            <p className={styles.featureInfo}>
+              The background is the NASA APOD (photo of the day) giving you a
+              fresh feel every day that you open Star Dweller.
+            </p>
+          </div>
         </div>
       </section>
       {isAuthModalOpen && (
