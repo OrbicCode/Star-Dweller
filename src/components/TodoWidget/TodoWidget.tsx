@@ -134,6 +134,7 @@ export default function TodoWidget({ initialTasks }: TodoWidgetProps) {
               checked={task.completed}
               onChange={() => toggleTask(task.id, task.completed)}
               className={styles.checkbox}
+              aria-label={`Mark "${task.task}" as ${task.completed ? 'incomplete' : 'complete'}`}
             />
             <input
               type='text'
@@ -148,10 +149,13 @@ export default function TodoWidget({ initialTasks }: TodoWidgetProps) {
               className={
                 task.completed ? styles.taskTextCompleted : styles.taskText
               }
+              aria-label={`Edit task: ${task.task}`}
             />
             <span
               className={`material-symbols-outlined ${styles.deleteBtn}`}
               onClick={() => deleteTask(task.id)}
+              aria-label={`Delete task: ${task.task}`}
+              role='button'
             >
               delete
             </span>
