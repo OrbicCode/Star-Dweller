@@ -16,12 +16,17 @@ export default function Home() {
           Manage your tasks, keep up with space news, see when the next SpaceX
           launch is and more
         </p>
-        <button
-          onClick={() => setIsAuthModalOpen(!isAuthModalOpen)}
-          className={styles.getStartedBtn}
-        >
-          Get Started
-        </button>
+        <div className={styles.btnContainer}>
+          <button
+            onClick={() => setIsAuthModalOpen(!isAuthModalOpen)}
+            className={styles.getStartedBtn}
+          >
+            Get Started
+          </button>
+          <form>
+            <button className={styles.getStartedBtn}>Skip Login</button>
+          </form>
+        </div>
       </div>
       <div className={styles.imageSection}>
         <div className={styles.dashboardImageContainer}>
