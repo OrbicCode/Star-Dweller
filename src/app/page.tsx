@@ -5,17 +5,26 @@ import AuthModal from '@/components/auth/AuthModal/AuthModal';
 import styles from './page.module.css';
 import { skipLogin } from './login/actions';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/components/auth/AuthProvider/AuthProvider';
 
 export default function Home() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
+  const [isSkipLoading, setIsSkipLoading] = useState<boolean>(false);
   const router = useRouter();
+  const { refreshUser } = useAuth();
 
   async function handleSkip() {
+    setIsSkipLoading(true);
     try {
-      await skipLogin(new FormData());
-      router.push('/dashboard');
+      const result = await skipLogin(new FormData());
+      if (result && result.success) {
+        await refreshUser();
+        router.push('/dashboard');
+      }
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsSkipLoading(false);
     }
   }
 
@@ -35,8 +44,12 @@ export default function Home() {
           >
             Get Started
           </button>
-          <button onClick={handleSkip} className={styles.getStartedBtn}>
-            Skip Login
+          <button
+            onClick={handleSkip}
+            className={styles.getStartedBtn}
+            disabled={isSkipLoading}
+          >
+            {isSkipLoading ? 'Loading...' : 'Skip Login'}
           </button>
         </div>
       </div>
