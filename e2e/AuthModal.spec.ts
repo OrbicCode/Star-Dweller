@@ -8,14 +8,14 @@ test.describe('AuthModal', () => {
   test('should open AuthModal when login button is clicked', async ({
     page,
   }) => {
-    await page.getByRole('button', { name: 'Login' }).click();
+    await page.locator('.Header_loginBtn__IIweD').click();
     await expect(page.getByRole('heading', { name: 'Log in' })).toBeVisible();
   });
 
   test('toggles between login and signup when button clicked', async ({
     page,
   }) => {
-    await page.getByRole('button', { name: 'Login' }).click();
+    await page.locator('.Header_loginBtn__IIweD').click();
     await page.getByRole('button', { name: 'toggle' }).click();
     await expect(page.getByRole('heading', { name: 'Sign up' })).toBeVisible();
     await page.getByRole('button', { name: 'toggle' }).click();
@@ -25,7 +25,7 @@ test.describe('AuthModal', () => {
   test('should close AuthModal when close button is clicked', async ({
     page,
   }) => {
-    await page.getByRole('button', { name: 'Login' }).click();
+    await page.locator('.Header_loginBtn__IIweD').click();
     await expect(page.getByRole('heading', { name: 'Log in' })).toBeVisible();
     await page.getByRole('button', { name: 'close' }).click();
     await expect(

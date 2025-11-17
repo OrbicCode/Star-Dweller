@@ -3,9 +3,30 @@ import { useState } from 'react';
 import Image from 'next/image';
 import AuthModal from '@/components/auth/AuthModal/AuthModal';
 import styles from './page.module.css';
+import { skipLogin } from './login/actions';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/components/auth/AuthProvider/AuthProvider';
 
 export default function Home() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
+  const [isSkipLoading, setIsSkipLoading] = useState<boolean>(false);
+  const router = useRouter();
+  const { refreshUser } = useAuth();
+
+  async function handleSkip() {
+    setIsSkipLoading(true);
+    try {
+      const result = await skipLogin(new FormData());
+      if (result && result.success) {
+        await refreshUser();
+        router.push('/dashboard');
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSkipLoading(false);
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -23,9 +44,13 @@ export default function Home() {
           >
             Get Started
           </button>
-          <form>
-            <button className={styles.getStartedBtn}>Skip Login</button>
-          </form>
+          <button
+            onClick={handleSkip}
+            className={styles.getStartedBtn}
+            disabled={isSkipLoading}
+          >
+            {isSkipLoading ? 'Loading...' : 'Skip Login'}
+          </button>
         </div>
       </div>
       <div className={styles.imageSection}>

@@ -1,7 +1,6 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 
 import { createClient } from '@/utils/supabase/server';
 
@@ -36,14 +35,14 @@ export async function login(formData: FormData) {
   revalidatePath('/', 'layout');
   return { success: true };
 }
-
-export async function skipLogin() {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async function skipLogin(_formData: FormData) {
   const supabase = await createClient();
-  const demoEmail = process.env.DEMO_EMAIL;
-  const demoPassword = process.env.DEMO_PASSWORD;
+  const demoEmail = process.env.NEXT_PUBLIC_DEMO_EMAIL;
+  const demoPassword = process.env.NEXT_PUBLIC_DEMO_PASSWORD;
 
   if (!demoEmail || !demoPassword) {
-    return { error: 'Demo credentials not configured' };
+    throw new Error('Demo credentials not configured');
   }
 
   const { error } = await supabase.auth.signInWithPassword({
@@ -52,8 +51,9 @@ export async function skipLogin() {
   });
 
   if (error) {
-    return { error: error.message };
+    throw new Error(error.message);
   }
 
-  redirect('/dashboard');
+  revalidatePath('/', 'layout');
+  return { success: true };
 }

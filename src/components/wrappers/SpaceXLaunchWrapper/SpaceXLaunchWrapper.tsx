@@ -35,7 +35,7 @@ async function fetchNextSpaceXLaunch() {
 export default async function SpaceXLaunchWrapper() {
   const launch = await fetchNextSpaceXLaunch();
   const error = !launch
-    ? 'Unable to load launch data. Please try again later.'
+    ? 'No launch found. Please try again later.'
     : undefined;
   return <SpaceXLaunch launch={launch} error={error} />;
 }
