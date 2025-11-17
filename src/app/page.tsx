@@ -3,9 +3,21 @@ import { useState } from 'react';
 import Image from 'next/image';
 import AuthModal from '@/components/auth/AuthModal/AuthModal';
 import styles from './page.module.css';
+import { skipLogin } from './login/actions';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
+  const router = useRouter();
+
+  async function handleSkip() {
+    try {
+      await skipLogin(new FormData());
+      router.push('/dashboard');
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -23,9 +35,9 @@ export default function Home() {
           >
             Get Started
           </button>
-          <form>
-            <button className={styles.getStartedBtn}>Skip Login</button>
-          </form>
+          <button onClick={handleSkip} className={styles.getStartedBtn}>
+            Skip Login
+          </button>
         </div>
       </div>
       <div className={styles.imageSection}>
