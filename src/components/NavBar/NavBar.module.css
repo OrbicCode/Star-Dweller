@@ -73,6 +73,7 @@
 @media (min-width: 768px) {
   .nav {
     position: unset;
+    height: unset;
     background: none;
     transform: unset;
   }
